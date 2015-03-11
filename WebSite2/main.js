@@ -29,7 +29,7 @@ $(document).ready(function () {
             $("#skills").append(
                 "<li id=root-" + toId(newSkill) + ">"
                     + "<input class='check play' type='checkbox' >"
-                    + newSkill + " - "
+                    + newSkill + " : "
                     + "<span class='value'>0</span>"
                     + "<div class='write'>"    
                         + "<select id='dropdown-" + toId(newSkill) + "' >"

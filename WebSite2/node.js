@@ -3,7 +3,7 @@
 }
 
 function scaleLoss(sum) {
-    return Math.pow(sum, 2 / 3);
+    return Math.pow(2*sum - 1/4, 1 / 2) + 1/2;
 }
 
 function Node(name, ui, positive) {
