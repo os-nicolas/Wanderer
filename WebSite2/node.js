@@ -3,8 +3,21 @@
 }
 
 function scaleLoss(sum) {
-    return Math.pow(2*sum - 1/4, 1 / 2) + 1/2;
+    var power = .55;// this matches the descreet version a little better with .5 but w/e
+    return Math.pow(2*sum +1, .52) - (scaleLoss(1)-1);
 }
+
+//function scaleLoss(input) {
+    //var startAt = .0001;
+    //var step = startAt
+    //var sum = startAt;
+    //var at = startAt;
+    //while (at < input) {
+    //    sum += (1 / sum) * step;
+    //    at += step;
+    //}
+    //return sum;
+//}
 
 function Node(name, ui, type,positive) {
     var that = this;
