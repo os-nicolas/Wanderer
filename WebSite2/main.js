@@ -19,11 +19,11 @@ g.items = {};
 g.none = "-";
 
 
-function getRow(name) {
+function getRow(name,type) {
     return "<li id=skill-root-" + toId(name) + " class='skill'>"
-                + "<input class='check play' type='checkbox' >"
-                + name + " : "
-                + "<span class='value'>0</span>"
+                + (type=="skill"?"<input class='check play' type='checkbox' >":"")
+                + name + (type=="skill"?" : ":"")
+                + (type=="skill"?"<span class='value'>0</span>":"")
                 + "<div class='write'>"
                     + "<select id='dropdown-" + toId(name) + "' >"
                         + "<option value='" + g.none + "'>" + g.none + "</option>"
@@ -54,7 +54,7 @@ function addElement(type) {
         var newSkill = $("#" + type + "-name").val();
         $("#" + type + "-name").val("");
         if (newSkill != "" && netWork.allNodes[newSkill] == null) {
-            $("#" + type + "-element-list").append(getRow(newSkill));
+            $("#" + type + "-element-list").append(getRow(newSkill, type));
             if (type == "skill") {
                 updateDropDownsNewSkill(newSkill);
             }

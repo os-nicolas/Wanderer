@@ -4,7 +4,7 @@
 
 function scaleLoss(sum) {
     var power = .55;// this matches the descreet version a little better with .5 but w/e
-    return Math.pow(2*sum +1, .52) - (scaleLoss(1)-1);
+    return Math.pow(2 * sum + 1, .52) - (Math.pow(3, .52) - 1);
 }
 
 //function scaleLoss(input) {
