@@ -41,7 +41,7 @@ function getItemRow(name) {
                 + name + " : "
                 + "<span class='value play'>0</span>"
                 + "<div class='write'>"
-                    + "<input type='number' value='1'>"
+                    + "<input type='number' class='counter' value='1'>"
                     + "<button id='item-" + toId(name) + "' id='delete-" + toId(name) + "' type='button'>delete</button>"
                 + " </div>"
                 + "<ul id='" + toId(name) + "'></ul>"
