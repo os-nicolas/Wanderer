@@ -51,10 +51,10 @@ function getItemRow(name) {
 
 function addElement(type) {
     return function () {
-        var newSkill = $("#" + type + "Name").val();
-        $("#" + type + "Name").val("");
+        var newSkill = $("#" + type + "-name").val();
+        $("#" + type + "-name").val("");
         if (newSkill != "" && netWork.allNodes[newSkill] == null) {
-            $("#" + type + "s").append(getRow(newSkill));
+            $("#" + type + "-element-list").append(getRow(newSkill));
             if (type == "skill") {
                 updateDropDownsNewSkill(newSkill);
             }
@@ -80,14 +80,13 @@ $(document).ready(function () {
 
     g.updateMode(true)
 
-    $("#addSkill").click(addElement("skill"))
-
-    $("#addTrait").click(addElement("trait"))
-    $("#addItem").click(function () {
-        var newItem = $("#itemName").val();
-        $("#itemName").val("");
+    $("#add-skill").click(addElement("skill"))
+    $("#add-trait").click(addElement("trait"))
+    $("#add-item").click(function () {
+        var newItem = $("#item-name").val();
+        $("#item-name").val("");
         if (newItem != "" && g.items[newItem] == null) {
-            $("#items").append(getItemRow(newItem));
+            $("#item-element-list").append(getItemRow(newItem));
             g.items[newItem] = new Item(newItem, $("#item-root-" + toId(newItem)));
             $(".play").hide();
         }
@@ -114,7 +113,7 @@ $(document).ready(function () {
         g.updateMode(!g.write);
     });
 
-    $("#addCard").click(function () {
+    $("#add-card").click(function () {
         g.cardCout++;
         $("#cards").append('<textarea class="card" id="card-' + g.cardCount + '"></textarea>');
     })
