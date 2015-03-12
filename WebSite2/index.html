@@ -8,6 +8,7 @@
     <script src="Network.js"></script>
     <script src="Connection.js"></script>
     <script src="roll.js"></script>
+    <script src="Item.js"></script>
     <script src="Color.js"></script>
     <script src="main.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -16,50 +17,55 @@
 <body>
     <div id="all">
         <button id="mode" type="button">Done Editing</button>
-        <h1>Skills</h1>
-        <div id="skills-section" class="section">
-            <p class="write">Skills are ... TODO link to rules</p>
+        <div id="elements-section" class="section">
+            <h1>elements</h1>
             <div id="traits-sub-section" class="sub-section">
                 <h2>Traits:</h2>
+                <p class="write help">Skills are ... TODO link to rules</p>
                 <div class="write">
-                    skill:<input id="traitsName" type="text"></input>
-                    <button id="addtraits" type="button">add skill</button>
+                    Trait:<input id="traitName" type="text"></input>
+                    <button id="addTrait" type="button">Add trait</button>
                 </div>
+                <ul id="traits" class="element-list"></ul>
             </div>
             <div id="skills-sub-section" class="sub-section">
                 <h2>Skills:</h2>
-                <div class="write">
-                    skill:<input id="skillName" type="text"></input>
-                    <button id="addSkill" type="button">add skill</button>
+                <p class="write">Skills are ... TODO link to rules</p>
+                <div class="write help">
+                    Skill:<input id="skillName" type="text"></input>
+                    <button id="addSkill" type="button">Add skill</button>
                 </div>
+                <ul id="skills" class="element-list"></ul>
             </div>
-            <div id="equipment-sub-section" class="sub-section">
-                <h2>Equipment:</h2>
-                <div class="write">
-                    skill:<input id="skillName" type="text"></input>
-                    <button id="addSkill" type="button">add skill</button>
+            <div id="items-sub-section" class="sub-section">
+                <h2>Item:</h2>
+                <p class="write">Skills are ... TODO link to rules</p>
+                <div class="write help">
+                    Item:<input id="itemName" type="text"></input>
+                    <button id="addItem" type="button">Add item</button>
                 </div>
+                <ul id="items" class="element-list"></ul>
             </div>
         </div>
-        <h1 class="play">Roll</h1>
         <div id="roll-section" class="section play">
+            <h1 class="play">Roll</h1>
             current total bonus: <span id="totalBonus">0</span>
             <button id="roll" type="button">roll!</button>
             <div id="roll-0" class="roll-result"></div>
             <div id="roll-1" class="roll-result"></div>
             <div id="roll-2" class="roll-result"></div>
         </div>
-        <h1>Cards</h1>
         <div id="cards-section" class="section">
-            <p class="write">cards are ... TODO link to rules</p>
+            <h1>Cards</h1>
+            <p class="write help">cards are ... TODO link to rules</p>
             <div id="cards">
                 <textarea class="card" id="card-1"></textarea>
                 <textarea class="card" id="card-2"></textarea>
             </div>
             <button id="addCard" class="write" type="button">add card</button>
         </div>
-        <h1 class="play">Counters</h1>
         <div id="counters-section" class="section play">
+            <h1>Counters</h1>
             <form>
                 HP:
                 <input type="number" value="3">

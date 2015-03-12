@@ -6,8 +6,9 @@ function scaleLoss(sum) {
     return Math.pow(2*sum - 1/4, 1 / 2) + 1/2;
 }
 
-function Node(name, ui, positive) {
+function Node(name, ui, type,positive) {
     var that = this;
+    this.type = type;
     this.positive = (positive != undefined ? positive : true);
     this.name = name;
     this.ui = ui;

@@ -1,8 +1,8 @@
 ﻿function NetWork() {
     this.allNodes = {};
     this.connections = [];
-    this.add = function (name, ui, positive) {
-        var newNode = new Node(name, ui, positive);
+    this.add = function (name, ui,type, positive) {
+        var newNode = new Node(name, ui, type, positive);
         this.allNodes[name + ""] = newNode;
         return newNode;
     }
