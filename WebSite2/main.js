@@ -2,13 +2,17 @@
 function g() { };
 g.updateMode = function (write) {
     g.write = write;
+    $("#all").toggleClass("play");
+    $("#all").toggleClass("write");
     if (g.write) {
-        $(".play").hide();
-        $(".write").show();
+        //$(".play").hide();
+        //$(".write").show();
+        $(".item-bonus").prop("disabled", false);
         $("#mode").text("Done Editing");
     } else {
-        $(".play").show();
-        $(".write").hide();
+        //$(".play").show();
+        //$(".write").hide();
+        $(".item-bonus").prop("disabled", true);
         $("#mode").text("Edit");
     }
 }
@@ -39,15 +43,13 @@ function getItemRow(name) {
     return "<li id=item-root-" + toId(name) + " class='item'>"
                 + "<input class='check play' type='checkbox' >"
                 + name + " : "
-                + "<span class='value play'>0</span>"
+                + "<input id='item-bonus-" + toId(name) + "' type='number' class='counter item-bonus' value='1'>"
                 + "<div class='write'>"
-                    + "<input type='number' class='counter' value='1'>"
                     + "<button id='item-" + toId(name) + "' id='delete-" + toId(name) + "' type='button'>delete</button>"
                 + " </div>"
                 + "<ul id='" + toId(name) + "'></ul>"
             + "</li>"
 }
-
 
 function addElement(type) {
     return function () {
@@ -69,7 +71,6 @@ function addElement(type) {
                 }
             })
             updateValues();
-            $(".play").hide();
         }
     }
 }
@@ -88,7 +89,6 @@ $(document).ready(function () {
         if (newItem != "" && g.items[newItem] == null) {
             $("#item-element-list").append(getItemRow(newItem));
             g.items[newItem] = new Item(newItem, $("#item-root-" + toId(newItem)));
-            $(".play").hide();
         }
     })
 
@@ -117,6 +117,8 @@ $(document).ready(function () {
         g.cardCout++;
         $("#cards").append('<textarea class="card" id="card-' + g.cardCount + '"></textarea>');
     })
+
+    $("#misc").change(updateBonus);
 });
 
 function truncate(num, order) {
@@ -153,10 +155,17 @@ function getBonus() {
     var sum = 0;
     for (var skillName in netWork.allNodes) {
         var skill = netWork.allNodes[skillName];
-        if ($("#skill-root-" + toId(skill.name)).find('.check').is(':checked')) {
+        if (skill.checked()) {
             sum += skill.getBonus();
         }
     }
+    for (var itemName in g.items) {
+        var item = g.items[itemName];
+        if (item.checked()) {
+            sum += item.getBonus();
+        }
+    }
+    sum += Number($("#misc").val());
     return sum;
 }
 

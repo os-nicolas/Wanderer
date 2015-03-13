@@ -2,3 +2,13 @@
     width:100%;
     resize: vertical;
 }
+
+#all.play .write {
+    /*we can have styling for when we are in play*/
+    display:none;
+}
+
+#all.write .play {
+    /*or when we are in write mode*/
+    display:none;
+}

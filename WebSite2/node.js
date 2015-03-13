@@ -101,4 +101,8 @@ function Node(name, ui, type,positive) {
     this.dropdown = function () {
         return $("#dropdown-" + toId(this.name));
     }
+
+    this.checked = function () {
+        return ui.find('.check').is(':checked')
+    }
 }
