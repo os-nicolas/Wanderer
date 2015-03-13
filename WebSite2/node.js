@@ -30,7 +30,7 @@ function Node(name, ui, type,positive) {
     this.helps = function () {
         var result = [];
         var that = this;
-        netWork.connections.forEach(function (connection) {
+        g.character.netWork.connections.forEach(function (connection) {
             if (connection.from == that) {
                 result.push(connection);
             }
@@ -41,7 +41,7 @@ function Node(name, ui, type,positive) {
     this.helpedBy = function () {
         var result = [];
         var that = this;
-        netWork.connections.forEach(function (connection) {
+        g.character.netWork.connections.forEach(function (connection) {
             if (connection.to == that) {
                 result.push(connection);
             }
@@ -93,7 +93,7 @@ function Node(name, ui, type,positive) {
         $("option[value='" + toId(that.name) + "']").remove();
 
         // remove ourself from network
-        netWork.deleteNode(that);
+        g.character.netWork.deleteNode(that);
     }
 
     $("#delete-" + toId(this.name)).click(this.destory);

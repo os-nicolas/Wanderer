@@ -2,7 +2,7 @@
     this.to = to;
     this.from = from;
     this.ui = ui
-    netWork.connections.push(this);
+    g.character.netWork.connections.push(this);
 
     // hide this from drop down
     this.from.dropdown().find("option[value='" + toId(this.to.name) + "']").hide();
@@ -21,7 +21,7 @@
         that.from.dropdown().find("option[value='" + toId(that.to.name) + "']").show();
 
         // tell the network to do it part
-        netWork.deleteConnection(that);
+        g.character.netWork.deleteConnection(that);
     }
 
     $("#sub-delete-" + toId(this.from.name) +"-to-"+toId(this.to.name)).click(this.destory);

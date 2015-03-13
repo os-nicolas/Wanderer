@@ -16,11 +16,10 @@ g.updateMode = function (write) {
         $("#mode").text("Edit");
     }
 }
-g.cardCout = 2;
-
-g.items = {};
 
 g.none = "-";
+
+g.character = new Character();
 
 
 function getRow(name,type) {
@@ -55,13 +54,13 @@ function addElement(type) {
     return function () {
         var newSkill = $("#" + type + "-name").val();
         $("#" + type + "-name").val("");
-        if (newSkill != "" && netWork.allNodes[newSkill] == null) {
+        if (newSkill != "" && g.character.netWork.allNodes[newSkill] == null) {
             $("#" + type + "-element-list").append(getRow(newSkill, type));
             if (type == "skill") {
                 updateDropDownsNewSkill(newSkill);
             }
             addAllSkillTo($('#dropdown-' + toId(newSkill)));
-            var skillInstance = netWork.add(newSkill, $("#skill-root-" + toId(newSkill)),type);
+            var skillInstance = g.character.netWork.add(newSkill, $("#skill-root-" + toId(newSkill)), type);
             $("#skill-root-" + toId(newSkill)).find('.check').change(updateBonus);
             $('#connect-' + toId(newSkill)).click(function () {
                 var skill1 = newSkill;
@@ -86,9 +85,9 @@ $(document).ready(function () {
     $("#add-item").click(function () {
         var newItem = $("#item-name").val();
         $("#item-name").val("");
-        if (newItem != "" && g.items[newItem] == null) {
+        if (newItem != "" && g.character.items[newItem] == null) {
             $("#item-element-list").append(getItemRow(newItem));
-            g.items[newItem] = new Item(newItem, $("#item-root-" + toId(newItem)));
+            g.character.items[newItem] = new Item(newItem, $("#item-root-" + toId(newItem)));
         }
     })
 
@@ -134,33 +133,33 @@ function connect(skill1, skill2) {
     if (skill1 != "" && skill2 != "") {
         $("#" + toId(skill1)).append("<li  id='" + toId(skill1) + "-to-" + toId(skill2) + "'>" + skill2 + "<button class='write' id='sub-delete-" + toId(skill1) + "-to-" + toId(skill2) + "' type='button'>delete</button></li>")
         console.log(skill1 + "-" + skill2);
-        netWork.help(skill1, skill2, $("#" + toId(skill1) + "-to-" + toId(skill2)));
+        g.character.netWork.help(skill1, skill2, $("#" + toId(skill1) + "-to-" + toId(skill2)));
     }
 }
 function addAllSkillTo(select) {
-    for (var name in netWork.allNodes) {
-        if (netWork.allNodes[name].type == "skill") {
+    for (var name in g.character.netWork.allNodes) {
+        if (g.character.netWork.allNodes[name].type == "skill") {
             select.append("<option value='" + name + "'>" + name + "</option>")
         }
     };
 }
 
 function updateDropDownsNewSkill(newSkill) {
-    for (var name in netWork.allNodes) {
+    for (var name in g.character.netWork.allNodes) {
         $('#dropdown-' + toId(name)).append("<option value='" + newSkill + "'>" + newSkill + "</option>")
     };
 }
 
 function getBonus() {
     var sum = 0;
-    for (var skillName in netWork.allNodes) {
-        var skill = netWork.allNodes[skillName];
+    for (var skillName in g.character.netWork.allNodes) {
+        var skill = g.character.netWork.allNodes[skillName];
         if (skill.checked()) {
             sum += skill.getBonus();
         }
     }
-    for (var itemName in g.items) {
-        var item = g.items[itemName];
+    for (var itemName in g.character.items) {
+        var item = g.character.items[itemName];
         if (item.checked()) {
             sum += item.getBonus();
         }
@@ -180,12 +179,10 @@ function toId(skillName) {
 }
 
 function updateValues() {
-    for (var skillName in netWork.allNodes) {
-        var skill = netWork.allNodes[skillName];
+    for (var skillName in g.character.netWork.allNodes) {
+        var skill = g.character.netWork.allNodes[skillName];
         var value = skill.getBonus();
         $("#skill-root-" + toId(skill.name)).find('.value').text(truncate(value, 1));
         console.log("", $("#skill-root-" + toId(skill.name)).find('.value'));//
     };
 }
-
-var netWork = new NetWork();
