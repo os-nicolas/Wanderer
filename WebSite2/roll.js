@@ -7,14 +7,20 @@ Rolls.randomBool = function(odds) {
     return Math.random() < odds;
 }
 
+
+Rolls.step = .01;
+// what do we want the average result to be:
+Rolls.average = 10.0;
+Rolls.baseOdds = Rolls.average / (Rolls.average + Rolls.step);
+
 Rolls.roll =function(odds){
     if (odds == undefined) {
-        odds = .99;
+        odds = Rolls.baseOdds;
     }
     var sum = 0;
     var goingUp = Rolls.randomBool();
     while (Rolls.randomBool(odds)) {
-        sum += .1 * (goingUp ? 1 : -1)
+        sum += Rolls.step * (goingUp ? 1 : -1)
     }
     return sum;
 }
@@ -29,7 +35,8 @@ Rolls.cycle  = function() {
    
 
     setTimeout(function () {
-        Rolls.update(myRollId, 0,1000)
+        $(".roll-results").addClass("rolling")
+        Rolls.update(myRollId, 0,3000)
     }, 0);
 
 }
@@ -42,8 +49,9 @@ Rolls.update = function(myRollId, at, timePassed) {
 
     //var lastRow = $("#roll-" + (Rolls.count + at - 1) % Rolls.count);
     //lastRow.css("border-color", "#ffffff");
-    $(".roll-result").css("border-color", "#ffffff");
-    $(".roll-result").hide();
+    //$(".roll-result").css("border-color", "#ffffff");
+    //$(".roll-result").hide();
+    $(".roll-result").removeClass("active")
 
     if (myRollId == Rolls.rollId) {
         //while (!$("#roll-" + (at) % Rolls.count).is(":visible")) {
@@ -53,7 +61,8 @@ Rolls.update = function(myRollId, at, timePassed) {
 
         var currentRow = $("#roll-" + (at) % Rolls.count);
         //currentRow.css("border-color", "#000000");
-        currentRow.show();
+        //currentRow.show();
+        currentRow.addClass("active");
 
         var timeOut = Rolls.getTimeOut(timePassed);
 
@@ -66,7 +75,9 @@ Rolls.update = function(myRollId, at, timePassed) {
             }, timeOut);
         } else {
             setTimeout(function () {
-                currentRow.css("border-color", "#000000")
+                if (myRollId == Rolls.rollId) {
+                    $(".roll-results").removeClass("rolling")
+                }
             }
                 , timeOut);
         }
@@ -74,5 +85,5 @@ Rolls.update = function(myRollId, at, timePassed) {
 }
 
 Rolls.getTimeOut = function (timePassed) {
-    return Math.pow((timePassed / 200),2) + (Math.random() * (500))
+    return Math.pow((timePassed / 200),2) + (Math.random() * (200))
 }

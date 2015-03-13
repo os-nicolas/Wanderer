@@ -12,3 +12,23 @@
     /*or when we are in write mode*/
     display:none;
 }
+
+.roll-result {
+    display:inline-block;
+    width:10%;
+    -webkit-transition: all 0.3s ease;
+    opacity: 0.4;
+}
+
+.roll-result.active{
+    width:75%;
+    opacity: 1;
+}
+
+.rolling .roll-result {
+    width:25%;
+}
+
+.rolling .roll-result.active {
+    width:45%;
+}
