@@ -8,10 +8,10 @@ Rolls.randomBool = function(odds) {
 }
 
 
-Rolls.step = .01;
-// what do we want the average result to be:
-Rolls.average = 10.0;
-Rolls.baseOdds = Rolls.average / (Rolls.average + Rolls.step);
+Rolls.step = .1;
+// this is not really they average this is the number it will be less than half the time
+Rolls.average = 5.0;
+Rolls.baseOdds = Math.pow(.5, Rolls.step / Rolls.average);//(Rolls.average - Rolls.step) / (Rolls.average); //Rolls.average / (Rolls.average + Rolls.step);
 
 Rolls.roll =function(odds){
     if (odds == undefined) {
@@ -26,6 +26,10 @@ Rolls.roll =function(odds){
 }
 
 Rolls.rollId = 0;
+
+for (var i = 0; i < 100; i++) {
+    console.log(Rolls.roll())
+}
 
 Rolls.cycle  = function() {
     var at = 0;
