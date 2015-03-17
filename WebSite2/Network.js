@@ -1,15 +1,17 @@
-﻿function NetWork() {
+﻿function NetWork(char,json) {
     this.allNodes = {};
     this.connections = [];
-    this.add = function (name, ui,type, positive) {
-        var newNode = new Node(name, ui, type, positive);
+    char.netWork = this;
+    this.add = function (name,type, positive) {
+        var newNode = new Node(name, type, positive);
         this.allNodes[name + ""] = newNode;
+        updateValues();
         return newNode;
     }
-    this.help = function (fromString, toString, ui) {
+    this.help = function (fromString, toString) {
         var fromNode = this.allNodes[fromString];
         var toNode = this.allNodes[toString];
-        new Connection(fromNode, toNode, ui);
+        new Connection(fromNode, toNode);
 
         updateValues();
         updateBonus();
@@ -31,6 +33,40 @@
 
         updateValues();
         updateBonus();
+    }
+
+    if (json != undefined) {
+        // add nodes
+        for (var name in json["allNodes"]) {
+            this.allNodes[name] = Node.makeNode(json["allNodes"][name]);
+        }
+
+        var that = this;
+        // add connections
+        json["connections"].forEach(function (connection) {
+            that.help(connection["from"], connection["to"]);
+        });
+
+    }
+
+    this.clear = function () {
+        for (var name in this.allNodes) {
+            this.allNodes[name].destory();
+        }
+    }
+
+    this.toJSON = function () {
+        var out = {};
+        out["allNodes"] = {}
+        for (var name in this.allNodes) {
+            out["allNodes"][name] = this.allNodes[name].toJSON();
+        }
+        out["connections"] = [];
+        var that = this;
+        this.connections.forEach(function (connection) {
+            out["connections"].push(connection.toJSON())
+        })
+        return out;
     }
 
 

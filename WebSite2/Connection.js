@@ -1,7 +1,9 @@
-﻿function Connection(from, to, ui) {
+﻿function Connection(from, to) {
     this.to = to;
     this.from = from;
-    this.ui = ui
+
+    $("#" + toId(from.name)).append("<li  id='" + toId(from.name) + "-to-" + toId(to.name) + "'>" + to.name + "<button class='write' id='sub-delete-" + toId(from.name) + "-to-" + to.name + "' type='button'>delete</button></li>")
+    this.ui = $("#" + toId(from.name) + "-to-" + toId(to.name))
     g.character.netWork.connections.push(this);
 
     // hide this from drop down
@@ -12,7 +14,6 @@
 
     var that = this;
     this.destory = function () {
-        console.log("delete connection", that);
 
         // and remove the ui
         that.ui.remove();
@@ -25,4 +26,12 @@
     }
 
     $("#sub-delete-" + toId(this.from.name) +"-to-"+toId(this.to.name)).click(this.destory);
+
+    this.toJSON = function () {
+        var out = {};
+        out["to"] = this.to.name;
+        out["from"] = this.from.name;
+        return out;
+    }
 }
+

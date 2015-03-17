@@ -15,20 +15,26 @@
 
 .roll-result {
     display:inline-block;
-    width:10%;
+    width:0%;
     -webkit-transition: all 0.3s ease;
-    opacity: 0.4;
+    opacity: 0.0;
 }
 
 .roll-result.active{
-    width:75%;
+    width:90%;
     opacity: 1;
 }
 
 .rolling .roll-result {
     width:25%;
+    opacity: 0.6;
 }
 
 .rolling .roll-result.active {
     width:45%;
+    opacity: 1;
+}
+
+#traits-sub-section, #cards-section, .tip {
+    display:none;
 }

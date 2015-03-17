@@ -27,10 +27,6 @@ Rolls.roll =function(odds){
 
 Rolls.rollId = 0;
 
-for (var i = 0; i < 100; i++) {
-    console.log(Rolls.roll())
-}
-
 Rolls.cycle  = function() {
     var at = 0;
 
@@ -73,7 +69,6 @@ Rolls.update = function(myRollId, at, timePassed) {
         timePassed += timeOut;
         
         if (timePassed < Rolls.doneAt + (Math.random()*2500)) {
-
             setTimeout(function () {
                 Rolls.update(myRollId, at + 1, timePassed)
             }, timeOut);

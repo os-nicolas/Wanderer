@@ -1,0 +1,13 @@
+{
+	"name": "Wanderer",
+	"version": "1.0.0",
+	"main": "index.html",
+	"window": {
+		"title": "Wanderer",
+		"icon": "icon.png",
+		"width": 1000,
+		"toolbar": true,
+		"frame": true,
+		"min_width": 450
+	}
+}

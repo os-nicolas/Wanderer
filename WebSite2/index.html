@@ -11,6 +11,7 @@
     <script src="Item.js"></script>
     <script src="Color.js"></script>
     <script src="Character.js"></script>
+    <script src="SaveLoad.js"></script>
     <script src="main.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <title></title>
@@ -18,11 +19,21 @@
 <body>
     <div id="all" class="play">
         <button id="mode" type="button">Done Editing</button>
+
+        <!--load-->
+        <button id="load" type="button">Load</button>
+        <input type="file" id="load-file" style="display:none;" accept=".json">
+
+        <!--save-->
+        <button id="save" type="button">Save</button>
+        <input type="file" id="save-file" style="display:none;" accept=".json" nwsaveas />
+
+        <!--traits, skills, items-->
         <div id="elements-section" class="section">
-            <h1>elements</h1>
+            <h1></h1>
             <div id="traits-sub-section" class="sub-section">
                 <h2>Traits:</h2>
-                <p class="write help">Skills are ... TODO link to rules</p>
+                <p class="write tip">Skills are ... TODO link to rules</p>
                 <div class="write">
                     Trait:<input id="trait-name" type="text"></input>
                     <button id="add-trait" type="button">Add trait</button>
@@ -31,7 +42,7 @@
             </div>
             <div id="skills-sub-section" class="sub-section">
                 <h2>Skills:</h2>
-                <p class="write">Skills are ... TODO link to rules</p>
+                <p class="write tip">Skills are ... TODO link to rules</p>
                 <div class="write help">
                     Skill:<input id="skill-name" type="text"></input>
                     <button id="add-skill" type="button">Add skill</button>
@@ -39,8 +50,8 @@
                 <ul id="skill-element-list" class="element-list"></ul>
             </div>
             <div id="items-sub-section" class="sub-section">
-                <h2>Items:</h2>
-                <p class="write">Skills are ... TODO link to rules</p>
+                <h2>Items and Misc Bonuses:</h2>
+                <p class="write tip">Skills are ... TODO link to rules</p>
                 <div class="write help">
                     Item:<input id="item-name" type="text"></input>
                     <button id="add-item" type="button">Add item</button>
@@ -48,6 +59,8 @@
                 <ul id="item-element-list" class="element-list"></ul>
             </div>
         </div>
+
+        <!--roll-->
         <div id="roll-section" class="section play">
             <h1 class="play">Roll</h1>
             Misc:<input type="number" class="counter" id="misc" value="0">
@@ -59,15 +72,19 @@
                 <span id="roll-2" class="roll-result"></span>
             </div>
         </div>
+
+        <!-- cards -->
         <div id="cards-section" class="section">
             <h1>Cards</h1>
             <p class="write help">cards are ... TODO link to rules</p>
             <div id="cards">
-                <textarea class="card" id="card-1"></textarea>
-                <textarea class="card" id="card-2"></textarea>
+                <!--<textarea class="card" id="card-1"></textarea>
+                <textarea class="card" id="card-2"></textarea>-->
             </div>
             <button id="add-card" class="write" type="button">add card</button>
         </div>
+
+        <!--hp and facts-->
         <div id="counters-section" class="section play">
             <h1>Counters</h1>
             <form>

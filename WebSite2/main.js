@@ -5,89 +5,42 @@ g.updateMode = function (write) {
     $("#all").toggleClass("play");
     $("#all").toggleClass("write");
     if (g.write) {
-        //$(".play").hide();
-        //$(".write").show();
         $(".item-bonus").prop("disabled", false);
         $("#mode").text("Done Editing");
     } else {
-        //$(".play").show();
-        //$(".write").hide();
         $(".item-bonus").prop("disabled", true);
         $("#mode").text("Edit");
     }
 }
 
 g.none = "-";
-
 g.character = new Character();
 
-
-function getRow(name,type) {
-    return "<li id=skill-root-" + toId(name) + " class='skill'>"
-                + (type=="skill"?"<input class='check play' type='checkbox' >":"")
-                + name + (type=="skill"?" : ":"")
-                + (type=="skill"?"<span class='value'>0</span>":"")
-                + "<div class='write'>"
-                    + "<select id='dropdown-" + toId(name) + "' >"
-                        + "<option value='" + g.none + "'>" + g.none + "</option>"
-                    + "</select>"
-                    + "<button id='connect-" + toId(name) + "' type='button'>connect</button>"
-                    + "<button id='delete-" + toId(name) + "' type='button'>delete</button>"
-                + " </div>"
-                + "<ul id='" + toId(name) + "'></ul>"
-            + "</li>"
-}
-
-function getItemRow(name) {
-    return "<li id=item-root-" + toId(name) + " class='item'>"
-                + "<input class='check play' type='checkbox' >"
-                + name + " : "
-                + "<input id='item-bonus-" + toId(name) + "' type='number' class='counter item-bonus' value='1'>"
-                + "<div class='write'>"
-                    + "<button id='item-" + toId(name) + "' id='delete-" + toId(name) + "' type='button'>delete</button>"
-                + " </div>"
-                + "<ul id='" + toId(name) + "'></ul>"
-            + "</li>"
-}
-
 function addElement(type) {
-    return function () {
-        var newSkill = $("#" + type + "-name").val();
+    var newSkill = $("#"+type+"-name").val();
+    if (newSkill != "" && g.character.netWork.allNodes[newSkill] == null) {
         $("#" + type + "-name").val("");
-        if (newSkill != "" && g.character.netWork.allNodes[newSkill] == null) {
-            $("#" + type + "-element-list").append(getRow(newSkill, type));
-            if (type == "skill") {
-                updateDropDownsNewSkill(newSkill);
-            }
-            addAllSkillTo($('#dropdown-' + toId(newSkill)));
-            var skillInstance = g.character.netWork.add(newSkill, $("#skill-root-" + toId(newSkill)), type);
-            $("#skill-root-" + toId(newSkill)).find('.check').change(updateBonus);
-            $('#connect-' + toId(newSkill)).click(function () {
-                var skill1 = newSkill;
-                var skill2 = $('#dropdown-' + toId(newSkill)).val();
-                if (skill2 != "-") {
-                    connect(skill1, skill2);
-                }
-            })
-            updateValues();
-        }
+        g.character.netWork.add(newSkill, type);
     }
 }
-
-
 
 $(document).ready(function () {
 
     g.updateMode(true)
 
-    $("#add-skill").click(addElement("skill"))
-    $("#add-trait").click(addElement("trait"))
+    SaveLoad.init();
+
+    $("#add-skill").click(function () {
+        addElement("skill");
+    })
+    $("#add-trait").click(function () {
+        addElement("trait");
+    })
     $("#add-item").click(function () {
         var newItem = $("#item-name").val();
         $("#item-name").val("");
         if (newItem != "" && g.character.items[newItem] == null) {
-            $("#item-element-list").append(getItemRow(newItem));
-            g.character.items[newItem] = new Item(newItem, $("#item-root-" + toId(newItem)));
+            g.character.items[newItem] = new Item(newItem);
         }
     })
 
@@ -113,8 +66,7 @@ $(document).ready(function () {
     });
 
     $("#add-card").click(function () {
-        g.cardCout++;
-        $("#cards").append('<textarea class="card" id="card-' + g.cardCount + '"></textarea>');
+        g.character.addCard("");
     })
 
     $("#misc").change(updateBonus);
@@ -131,11 +83,10 @@ function truncate(num, order) {
 
 function connect(skill1, skill2) {
     if (skill1 != "" && skill2 != "") {
-        $("#" + toId(skill1)).append("<li  id='" + toId(skill1) + "-to-" + toId(skill2) + "'>" + skill2 + "<button class='write' id='sub-delete-" + toId(skill1) + "-to-" + toId(skill2) + "' type='button'>delete</button></li>")
-        console.log(skill1 + "-" + skill2);
-        g.character.netWork.help(skill1, skill2, $("#" + toId(skill1) + "-to-" + toId(skill2)));
+        g.character.netWork.help(skill1, skill2);
     }
 }
+
 function addAllSkillTo(select) {
     for (var name in g.character.netWork.allNodes) {
         if (g.character.netWork.allNodes[name].type == "skill") {

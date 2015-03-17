@@ -1,18 +1,60 @@
-function Item(name,ui) {
+function Item(name, bonus) {
     this.name = name;
-    this.ui = ui
+    $("#item-element-list").append(Item.getItemRow(this.name));
+    this.ui = $("#item-root-" + toId(this.name));
 
-    //ui.find("item-bonus-" + toId(name)).change(function () {
-    //    ui.find(".value").value(this.val());
-    //})
+    this.destory = function () {
+        console.log("tried to delete" + this.name);
 
-    ui.find('.check').change(updateBonus);
+        this.ui.remove();
+
+        g.character.deleteItem(this);
+    }
+    var that = this;
+    this.ui.find("#delete-" + toId(this.name)).click(function () { that.destory() });
+
+    this.value = function (val) {
+        if (val == undefined) {
+            return this.ui.find(".item-bonus").val();
+        } else {
+            this.ui.find(".item-bonus").val(val);
+        }
+    }
+
+    if (bonus != undefined) {
+        this.value(bonus);
+    }
+
+    this.ui.find('.check').change(updateBonus);
 
     this.checked = function () {
-        return ui.find('.check').is(':checked');
+        return this.ui.find('.check').is(':checked');
     }
 
     this.getBonus = function () {
-        return Number(ui.find(".item-bonus").val());
+        return Number(this.value());
     }
+
+    this.toJSON = function () {
+        var out = {}
+        out["name"] = this.name;
+        out["bonus"] = this.value();
+        return out;
+    }
+}
+
+Item.makeItem = function (json) {
+    return new Item(json["name"], json["bonus"]);
+}
+
+Item.getItemRow = function (name) {
+    return "<li id=item-root-" + toId(name) + " class='item'>"
+                + "<input class='check play' type='checkbox' >"
+                + name + " : "
+                + "<input id='item-bonus-" + toId(name) + "' type='number' class='counter item-bonus' value='1'>"
+                + "<div class='write'>"
+                    + "<button id='delete-" + toId(name) + "' type='button'>delete</button>"
+                + " </div>"
+                + "<ul id='" + toId(name) + "'></ul>"
+            + "</li>"
 }

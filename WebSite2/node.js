@@ -19,12 +19,27 @@ function scaleLoss(sum) {
     //return sum;
 //}
 
-function Node(name, ui, type,positive) {
+function Node(name, type,positive) {
     var that = this;
     this.type = type;
     this.positive = (positive != undefined ? positive : true);
     this.name = name;
-    this.ui = ui;
+   
+    $("#" + type + "-element-list").append(Node.getRow(this.name, type));
+    if (type == "skill") {
+        updateDropDownsNewSkill(this.name);
+    }
+    addAllSkillTo($('#dropdown-' + toId(this.name)));
+    this.ui = $("#skill-root-" + toId(this.name));
+    this.ui.find('.check').change(updateBonus);
+    $('#connect-' + toId(this.name)).click(function () {
+        var skill1 = that.name;
+        var skill2 = $('#dropdown-' + toId(that.name)).val();
+        console.log("s1: " + skill1 + " s2: " + skill2);
+        if (skill2 != "-") {
+            connect(skill1, skill2);
+        }
+    })
 
     // list of Connections
     this.helps = function () {
@@ -76,7 +91,6 @@ function Node(name, ui, type,positive) {
     }
 
     this.destory = function () {
-        console.log("delete connection", that);
 
         // kill our connections
         that.helpedBy().forEach(function (connection) {
@@ -103,6 +117,34 @@ function Node(name, ui, type,positive) {
     }
 
     this.checked = function () {
-        return ui.find('.check').is(':checked')
+        return this.ui.find('.check').is(':checked')
     }
+
+    this.toJSON = function () {
+        var out = {};
+        out["name"] = this.name;
+        out["type"] = this.type;
+        out["positive"] = this.positive;
+        return out;
+    }
+}
+
+Node.makeNode = function (json) {
+    return new Node(json["name"], json["type"], json["positive"]);
+}
+
+Node.getRow = function (name, type) {
+    return "<li id=skill-root-" + toId(name) + " class='skill'>"
+                + (type == "skill" ? "<input class='check play' type='checkbox' >" : "")
+                + name + (type == "skill" ? " : " : "")
+                + (type == "skill" ? "<span class='value'>0</span>" : "")
+                + "<div class='write'>"
+                    + "<select id='dropdown-" + toId(name) + "' >"
+                        + "<option value='" + g.none + "'>" + g.none + "</option>"
+                    + "</select>"
+                    + "<button id='connect-" + toId(name) + "' type='button'>connect</button>"
+                    + "<button id='delete-" + toId(name) + "' type='button'>delete</button>"
+                + " </div>"
+                + "<ul id='" + toId(name) + "'></ul>"
+            + "</li>"
 }
