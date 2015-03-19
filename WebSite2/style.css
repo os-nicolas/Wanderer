@@ -14,25 +14,28 @@
 }
 
 .roll-result {
-    display:inline-block;
-    width:0%;
+    /*display:inline-block;*/
+    width:10%;
     -webkit-transition: all 0.3s ease;
-    opacity: 0.0;
+    border-color: #000000;
+    /*opacity: 0.0;*/
 }
 
 .roll-result.active{
     width:90%;
-    opacity: 1;
+    /*opacity: 1;*/
 }
 
 .rolling .roll-result {
     width:25%;
-    opacity: 0.6;
+    border-right-width:2px;
+    border-right-style: solid;
+    /*opacity: 0.6;*/
 }
 
 .rolling .roll-result.active {
-    width:45%;
-    opacity: 1;
+    width:50%;
+    /*opacity: 1;*/
 }
 
 #traits-sub-section, #cards-section, .tip {
