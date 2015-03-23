@@ -2,7 +2,7 @@
     this.to = to;
     this.from = from;
 
-    $("#" + toId(from.name)).append("<li  id='" + toId(from.name) + "-to-" + toId(to.name) + "'>" + to.name + "<button class='write' id='sub-delete-" + toId(from.name) + "-to-" + to.name + "' type='button'>delete</button></li>")
+	$("#" + toId(from.name)).append("<li  id='" + toId(from.name) + "-to-" + toId(to.name) + "'>" + to.name + "<button class='write' id='sub-delete-" + toId(from.name) + "-to-" + toId(to.name) + "' type='button'>delete</button></li>")
     this.ui = $("#" + toId(from.name) + "-to-" + toId(to.name))
     g.character.netWork.connections.push(this);
 
