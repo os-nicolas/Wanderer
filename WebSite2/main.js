@@ -71,28 +71,14 @@ $(document).ready(function () {
 
 	$("#misc").change(updateBonus);
 
-	$("#rename-dialog").dialog({
-		modal: true,
-		buttons: [
-			{
-				text: "Cancel",
-				click: function () {
-					$(this).dialog("close");
-				}
-			},
-			{
-				text: "Update",
-				click: function () {
-					$(this).dialog("close");
-				}
-			}
-		]
-	})
-
-	$("#character-name").click(function () {
-		console.log("clicked")
-		$("#rename-dialog").dialog("open");
+	$("#character-name-edit").keyup(function () {
+		g.character.setName($(this).val());
 	});
+
+	$("#character-name-edit").keyup(function () {
+		g.character.setNotes($(this).val());
+	});
+
 });
 
 function truncate(num, order) {

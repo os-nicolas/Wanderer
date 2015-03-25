@@ -1,8 +1,19 @@
 function Character(json) {
-    this.items = {};
+	this.items = {};
+	this.name = ""
+	this.notes="";
     this.cardCount = 0;
     this.netWork = new NetWork(this);
     g.character = this;
+
+    this.setName = function (name) {
+    	this.name = name;
+    	$("#character-name-display").text(this.name);
+    }
+
+    this.setNotes = function (notes) {
+    	this.notes = notes;
+    }
 
     this.clear = function () {
         console.log("char - tried to clear");
@@ -38,6 +49,15 @@ function Character(json) {
         json["cards"].forEach(function (cardText) {
             that.addCard(cardText);
         });
+
+    	// load name
+        this.name = json["name"];
+        $("#character-name-display").text(this.name);
+        $("#character-name-edit").val(this.name);
+
+    	// load notes
+        this.notes = json["notes"];
+        $("#notes").text(this.notes);
     }
 
 
@@ -63,6 +83,12 @@ function Character(json) {
         for (var i =0; i < this.cardCount; i++) {
             out["cards"].push($("#card-"+i).val());
         }
+
+    	//save name
+        out["name"] = this.name;
+
+    	//save name
+        out["notes"] = this.notes;
 
         return out;
     }
