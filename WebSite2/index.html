@@ -3,7 +3,10 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <script src="jquery.min.js"></script>
+	<!--external dependencies-->
+    <script src="jquery/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
+	<!--internal dependencies-->
     <script src="node.js"></script>
     <script src="Network.js"></script>
     <script src="Connection.js"></script>
@@ -22,7 +25,9 @@
     <div id="all" class="play">
 
 		<div id="">
-			<h1>Character name</h1>
+			<div id="character-name">
+				<h1>Character name</h1>
+			</div>
 			<button id="mode" type="button">Done Editing</button>
 
 			<!--load-->
@@ -102,5 +107,14 @@
 			</div>
 		</div>
     </div>
+
+	<div id="popups">
+		<div id="rename-dialog" class="dialog">
+			<div>
+				<span>Name:</span>
+				<input type="text" id="rename-input">
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -172,3 +172,11 @@ li {
 	display:none;
 }
 
+#popups {
+	display:none;
+}
+
+.ui-dialog {
+  z-index: 3;
+  background: white;
+}
