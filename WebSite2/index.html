@@ -2,32 +2,16 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+	<meta charset="utf-8" />
 	<!--external dependencies-->
-    <script src="jquery/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 	<!--internal dependencies-->
-    <script src="node.js"></script>
-    <script src="Network.js"></script>
-    <script src="Connection.js"></script>
-    <script src="roll.js"></script>
-    <script src="Item.js"></script>
-    <script src="Color.js"></script>
-    <script src="Character.js"></script>
-    <script src="SaveLoad.js"></script>
-    <script src="main.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
 	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,300italic,400italic,700,700italic"
 		  rel="stylesheet" type="text/css">
-    <title></title>
 </head>
 <body>
-    <div id="all" class="play">
 
 		<div id="">
-			<div id="character-name">
-				<h1>Character name</h1>
-			</div>
 			<button id="mode" type="button">Done Editing</button>
 
 			<!--load-->
@@ -40,31 +24,15 @@
 		</div>
 
 		<div id="content">
-			<!--traits, skills, items-->
-			<div id="elements-section" class="section">
-				<div id="traits-sub-section" class="sub-section">
-					<h2>Traits:</h2>
-					<p class="write tip">Skills are ... TODO link to rules</p>
-					<div class="write">
-						Trait:<input id="trait-name" type="text"></input>
-						<button id="add-trait" type="button">Add trait</button>
-					</div>
-					<ul id="trait-element-list" class="element-list"></ul>
 				</div>
-				<div id="skills-sub-section" class="sub-section">
-					<h2>Skills:</h2>
 					<p class="write tip">Skills are ... TODO link to rules</p>
 					<div class="write help">
-						Skill:<input id="skill-name" type="text"></input>
 						<button id="add-skill" type="button">Add skill</button>
 					</div>
 					<ul id="skill-element-list" class="element-list"></ul>
 				</div>
-				<div id="items-sub-section" class="sub-section">
-					<h2>Items and Misc Bonuses:</h2>
 					<p class="write tip">Skills are ... TODO link to rules</p>
 					<div class="write help">
-						Item:<input id="item-name" type="text"></input>
 						<button id="add-item" type="button">Add item</button>
 					</div>
 					<ul id="item-element-list" class="element-list"></ul>
@@ -73,48 +41,14 @@
 
 			<!--roll-->
 			<div id="roll-section" class="section play">
-				<h1 class="play">Roll</h1>
-				Misc:<input type="number" class="counter" id="misc" value="0">
-				current total bonus: <span id="totalBonus">0</span>
-				<button id="roll" type="button">roll!</button>
-				<div class="roll-results">
-					<div id="roll-0" class="roll-result"></div>
-					<div id="roll-1" class="roll-result"></div>
-					<div id="roll-2" class="roll-result"></div>
 				</div>
-			</div>
-
-			<!-- cards -->
-			<div id="cards-section" class="section">
-				<h1>Cards</h1>
-				<p class="write help">cards are ... TODO link to rules</p>
-				<div id="cards">
-					<!--<textarea class="card" id="card-1"></textarea>
-				<textarea class="card" id="card-2"></textarea>-->
-				</div>
-				<button id="add-card" class="write" type="button">add card</button>
 			</div>
 
 			<!--hp and facts-->
 			<div id="counters-section" class="section play">
-				<h1>Counters</h1>
-				<form>
-					HP:
-					<input type="number" class="counter" value="3">
-					Facts:
-					<input type="number" class="counter" value="3">
-				</form>
 			</div>
-		</div>
-    </div>
 
-	<div id="popups">
-		<div id="rename-dialog" class="dialog">
-			<div>
-				<span>Name:</span>
-				<input type="text" id="rename-input">
 			</div>
 		</div>
-	</div>
 </body>
 </html>
