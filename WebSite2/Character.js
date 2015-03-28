@@ -8,7 +8,9 @@ function Character(json) {
 
     this.setName = function (name) {
     	this.name = name;
+    	$('head title', window.parent.document).text(name);
     	$("#character-name-display").text(this.name);
+    	$("#character-name-edit").val(this.name);
     }
 
     this.setNotes = function (notes) {
@@ -51,10 +53,8 @@ function Character(json) {
         });
 
     	// load name
-        this.name = json["name"];
-        $("#character-name-display").text(this.name);
-        $("#character-name-edit").val(this.name);
-
+        this.setName(json["name"]);
+        
     	// load notes
         this.notes = json["notes"];
         $("#notes").text(this.notes);

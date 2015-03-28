@@ -4,13 +4,13 @@
     char.netWork = this;
     this.add = function (name,type, positive) {
         var newNode = new Node(name, type, positive);
-        this.allNodes[name + ""] = newNode;
+        this.allNodes[toId(name)+""] = newNode;
         updateValues();
         return newNode;
     }
     this.help = function (fromString, toString) {
-        var fromNode = this.allNodes[fromString];
-        var toNode = this.allNodes[toString];
+        var fromNode = this.allNodes[toId(fromString)];
+        var toNode = this.allNodes[toId(toString)];
         new Connection(fromNode, toNode);
 
         updateValues();

@@ -76,7 +76,7 @@ input {
 }
 
 	input.input-element {
-		text-transform: lowercase;
+		/*text-transform: lowercase;*/
 	}
 
 select {

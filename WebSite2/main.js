@@ -18,7 +18,7 @@ g.character = new Character();
 
 function addElement(type) {
 	var newSkill = $("#"+type+"-name").val();
-	if (newSkill != "" && g.character.netWork.allNodes[newSkill] == null) {
+	if (newSkill != "" && g.character.netWork.allNodes[toId(newSkill)] == null) {
 		$("#" + type + "-name").val("");
 		g.character.netWork.add(newSkill, type);
 	}
@@ -98,15 +98,16 @@ function connect(skill1, skill2) {
 
 function addAllSkillTo(select) {
 	for (var name in g.character.netWork.allNodes) {
-		if (g.character.netWork.allNodes[name].type == "skill") {
-			select.append("<option value='" + name + "'>" + name + "</option>")
+		var mySkill = g.character.netWork.allNodes[name];
+		if (mySkill.type == "skill") {
+			select.append("<option value='" + toId(mySkill.name) + "'>" + mySkill.name + "</option>")
 		}
 	};
 }
 
 function updateDropDownsNewSkill(newSkill) {
 	for (var name in g.character.netWork.allNodes) {
-		$('#dropdown-' + toId(name)).append("<option value='" + newSkill + "'>" + newSkill + "</option>")
+		$('#dropdown-' + name).append("<option value='" + toId(newSkill) + "'>" + newSkill + "</option>")
 	};
 }
 
@@ -135,7 +136,7 @@ function updateBonus() {
 
 
 function toId(skillName) {
-	return skillName.replace(/\s+/g, '-').toLowerCase();
+	return skillName.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
 }
 
 function updateValues() {
