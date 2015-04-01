@@ -15,7 +15,7 @@
 	left: 50%;
 	margin-left: -325px;
 	top: 0;
-	padding: 0;
+	padding: 5px;
 	z-index: 2;
 }
 
@@ -188,6 +188,6 @@ li {
 		/*opacity: 1;*/
 	}
 
-#traits-sub-section, #cards-section, .tip, #description {
+#traits-sub-section, #cards-section, .tip {
 	display: none;
 }

@@ -54,12 +54,12 @@ Rolls.cycle  = function() {
 
     setTimeout(function () {
         $(".roll-results").addClass("rolling")
-        Rolls.update(myRollId, 0, 3000)
+        Rolls.update(myRollId, Math.floor(Math.random() * Rolls.count), 3500)
     }, 0);
 
 }
 
-Rolls.doneAt = 7500;
+Rolls.doneAt = 6000;
 
 Rolls.count = 3;
 
@@ -102,5 +102,5 @@ Rolls.update = function(myRollId, at, timePassed) {
 }
 
 Rolls.getTimeOut = function (timePassed) {
-    return Math.pow((timePassed / 200),2) + (Math.random() * (200))
+    return Math.pow((timePassed / 450),2.5) + (Math.random() * (200))
 }

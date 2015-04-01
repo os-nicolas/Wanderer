@@ -1,7 +1,8 @@
 function Character(json) {
 	this.items = {};
 	this.name = ""
-	this.notes="";
+	this.notes = "";
+	this.description = "";
     this.cardCount = 0;
     this.netWork = new NetWork(this);
     g.character = this;
@@ -11,6 +12,12 @@ function Character(json) {
     	$('head title', window.parent.document).text(name);
     	$("#character-name-display").text(this.name);
     	$("#character-name-edit").val(this.name);
+    }
+
+    this.setDescription = function (description) {
+    	this.description = description;
+    	$("#description-display").text(this.description);
+    	$("#description-edit").val(this.description);
     }
 
     this.setNotes = function (notes) {
@@ -54,6 +61,9 @@ function Character(json) {
 
     	// load name
         this.setName(json["name"]);
+
+    	// load description
+        this.setDescription(json["description"]);
         
     	// load notes
         this.notes = json["notes"];
@@ -87,8 +97,11 @@ function Character(json) {
     	//save name
         out["name"] = this.name;
 
-    	//save name
+    	//save note
         out["notes"] = this.notes;
+
+    	//save note
+        out["description"] = this.description;
 
         return out;
     }

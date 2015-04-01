@@ -64,8 +64,12 @@ $(document).ready(function () {
 		g.character.setName($(this).val());
 	});
 
-	$("#character-name-edit").keyup(function () {
+	$("#notes").keyup(function () {
 		g.character.setNotes($(this).val());
+	});
+
+	$("#description-edit").keyup(function () {
+		g.character.setDescription($(this).val());
 	});
 
 });
