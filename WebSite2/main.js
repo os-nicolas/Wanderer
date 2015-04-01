@@ -44,22 +44,11 @@ $(document).ready(function () {
 		}
 	})
 
-	$("#roll").click(function () {
-		console.log("rolled");
-		for (var i = 0; i < 6; i++) {
-			var r = Rolls.roll() + getBonus();
-			if (r < 0) {
-				var red = Math.min(1, Math.abs(r) / (50));
-				var cc = Color.colorCode(255, 1 - red, 1 - red);
-			} else {
-				var green = Math.min(1, Math.abs(r) / (50))
-				var cc = Color.colorCode(1 - green, 255, 1 - green);
-			}
-			$("#roll-" + i).css("background-color", cc);
-			$("#roll-" + i).text((r < 0 ? "" : " ") + truncate(r));
-		}
-		Rolls.cycle();
-	});
+	$("#roll2").click(Rolls.getRollFunction(2.5));
+
+	$("#roll5").click(Rolls.getRollFunction(5));
+
+	$("#roll10").click(Rolls.getRollFunction(10));
 
 	$("#mode").click(function () {
 		g.updateMode(!g.write);

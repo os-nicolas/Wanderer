@@ -146,7 +146,7 @@ li {
 	resize: vertical;
 }
 
-#notes {
+.char-text {
 	width: calc(100% - 8px);
 	resize: vertical;
 }
@@ -188,15 +188,6 @@ li {
 		/*opacity: 1;*/
 	}
 
-#traits-sub-section, #cards-section, .tip {
+#traits-sub-section, #cards-section, .tip, #description {
 	display: none;
-}
-
-#popups {
-	display: none;
-}
-
-.ui-dialog {
-	z-index: 3;
-	background: white;
 }
