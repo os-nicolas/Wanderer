@@ -29,7 +29,7 @@
     }
 
     this.deleteNode = function (node) {
-        delete this.allNodes[node.name];
+    	delete this.allNodes[toId(node.name) + ""];
 
         updateValues();
         updateBonus();
@@ -38,7 +38,7 @@
     if (json != undefined) {
         // add nodes
         for (var name in json["allNodes"]) {
-            this.allNodes[name] = Node.makeNode(json["allNodes"][name]);
+        	this.allNodes[toId(name)] = Node.makeNode(json["allNodes"][name]);
         }
 
         var that = this;

@@ -18,7 +18,7 @@ g.character = new Character();
 
 function addElement(type) {
 	var newSkill = $("#"+type+"-name").val();
-	if (newSkill != "" && g.character.netWork.allNodes[toId(newSkill)] == null) {
+	if (newSkill != "" && g.character.netWork.allNodes[toId(newSkill)+""] == null) {
 		$("#" + type + "-name").val("");
 		g.character.netWork.add(newSkill, type);
 	}

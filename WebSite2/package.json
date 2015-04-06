@@ -8,7 +8,7 @@
 		"icon": "icon.png",
 		"width": 1000,
 		//set to true for debugging
-		"toolbar": false,
+		"toolbar": true,
 		"frame": true,
 		"min_width": 450
 	}

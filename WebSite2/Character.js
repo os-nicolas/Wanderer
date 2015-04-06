@@ -16,7 +16,7 @@ function Character(json) {
 
     this.setDescription = function (description) {
     	this.description = description;
-    	$("#description-display").text(this.description);
+    	$("#description-display").html(this.description.replace(/\r?\n/g, "<br />"));
     	$("#description-edit").val(this.description);
     }
 
