@@ -41,10 +41,14 @@
         	this.allNodes[toId(name)] = Node.makeNode(json["allNodes"][name]);
         }
 
+        console.log(this.allNodes);
+
         var that = this;
         // add connections
         json["connections"].forEach(function (connection) {
-            that.help(connection["from"], connection["to"]);
+
+        	console.log(toId(connection["from"]) + " to " + toId(connection["to"]), connection);
+        	that.help(connection["from"], connection["to"]);
         });
 
     }

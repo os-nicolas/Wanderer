@@ -15,6 +15,7 @@ g.updateMode = function (write) {
 
 g.none = "-";
 g.character = new Character();
+g.modules = [Notes, Goals, Name, Description];//, new Goals(), new Name(), new Description()];
 
 function addElement(type) {
 	var newSkill = $("#"+type+"-name").val();
@@ -39,8 +40,8 @@ $(document).ready(function () {
 	$("#add-item").click(function () {
 		var newItem = $("#item-name").val();
 		$("#item-name").val("");
-		if (newItem != "" && g.character.items[newItem] == null) {
-			g.character.items[newItem] = new Item(newItem);
+		if (newItem != "" && g.character.items[toId(newItem)] == null) {
+			g.character.items[toId(newItem)] = new Item(newItem);
 		}
 	})
 
@@ -59,19 +60,9 @@ $(document).ready(function () {
 	})
 
 	$("#misc").change(updateBonus);
-
-	$("#character-name-edit").keyup(function () {
-		g.character.setName($(this).val());
+	g.modules.forEach(function (mod) {
+		mod.init();
 	});
-
-	$("#notes").keyup(function () {
-		g.character.setNotes($(this).val());
-	});
-
-	$("#description-edit").keyup(function () {
-		g.character.setDescription($(this).val());
-	});
-
 });
 
 function truncate(num, order) {
@@ -119,6 +110,11 @@ function getBonus() {
 		}
 	}
 	sum += Number($("#misc").val());
+
+	g.modules.forEach(function (mod) {
+		sum + mod.getBonus();
+	});
+
 	return sum;
 }
 
@@ -129,7 +125,7 @@ function updateBonus() {
 
 
 function toId(skillName) {
-	return skillName.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
+	return skillName.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '').toLowerCase();
 }
 
 function updateValues() {

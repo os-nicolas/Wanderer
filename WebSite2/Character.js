@@ -1,24 +1,9 @@
 function Character(json) {
 	this.items = {};
-	this.name = ""
 	this.notes = "";
-	this.description = "";
     this.cardCount = 0;
     this.netWork = new NetWork(this);
     g.character = this;
-
-    this.setName = function (name) {
-    	this.name = name;
-    	$('head title', window.parent.document).text(name);
-    	$("#character-name-display").text(this.name);
-    	$("#character-name-edit").val(this.name);
-    }
-
-    this.setDescription = function (description) {
-    	this.description = description;
-    	$("#description-display").html(this.description.replace(/\r?\n/g, "<br />"));
-    	$("#description-edit").val(this.description);
-    }
 
     this.setNotes = function (notes) {
     	this.notes = notes;
@@ -47,7 +32,7 @@ function Character(json) {
 
         // load items
         for (var item in json["items"]) {
-            this.items[item] = Item.makeItem(json["items"][item]);
+        	this.items[toId(item)] = Item.makeItem(json["items"][item]);
         }
 
         // load network
@@ -59,21 +44,15 @@ function Character(json) {
             that.addCard(cardText);
         });
 
-    	// load name
-        this.setName(json["name"]);
-
-    	// load description
-        this.setDescription(json["description"]);
-        
-    	// load notes
-        this.notes = json["notes"];
-        $("#notes").text(this.notes);
+        g.modules.forEach(function (mod) {
+        	mod.fromJSON(json);
+        });
     }
 
 
 
     this.deleteItem = function (item) {
-        delete this.items[item.name];
+        delete this.items[toId(item.name)];
 
         updateBonus();
     }
@@ -94,14 +73,9 @@ function Character(json) {
             out["cards"].push($("#card-"+i).val());
         }
 
-    	//save name
-        out["name"] = this.name;
-
-    	//save note
-        out["notes"] = this.notes;
-
-    	//save note
-        out["description"] = this.description;
+        g.modules.forEach(function (mod) {
+        	mod.toJSON(out);
+        });
 
         return out;
     }

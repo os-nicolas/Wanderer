@@ -188,6 +188,6 @@ li {
 		/*opacity: 1;*/
 	}
 
-#traits-sub-section, #cards-section, .tip {
+#traits-sub-section, #cards-section, .tip, #goals {
 	display: none;
 }

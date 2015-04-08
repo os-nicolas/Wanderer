@@ -13,6 +13,10 @@
 	<script src="Item.js"></script>
 	<script src="Color.js"></script>
 	<script src="Character.js"></script>
+	<script src="goals.js"></script>
+	<script src="description.js"></script>
+	<script src="name.js"></script>
+	<script src="notes.js"></script>
 	<script src="SaveLoad.js"></script>
 	<script src="main.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -103,6 +107,31 @@
 						Facts:
 						<input type="number" class="counter" value="3">
 					</form>
+				</div>
+			</div>
+
+			<!--goals-->
+			<div id="goals" class="section">
+				<h2>Goals:</h2>
+				<div class="section-body fixed-content">
+					<div class="play">
+						<ol>
+							<li>
+								<div id="goal-display-1" class="goal-display"></div>
+							</li>
+							<li>
+								<div id="goal-display-2" class="goal-display"></div>
+							</li>
+							<li>
+								<div id="goal-display-3" class="goal-display"></div>
+							</li>
+						</ol>
+					</div>
+					<div class="write">
+						<textarea id="goal-edit-1" class="goal-edit char-text"></textarea>
+						<textarea id="goal-edit-2" class="goal-edit char-text"></textarea>
+						<textarea id="goal-edit-3" class="goal-edit char-text"></textarea>
+					</div>
 				</div>
 			</div>
 
