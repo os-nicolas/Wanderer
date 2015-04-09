@@ -1,5 +1,7 @@
 function Description() { }
 
+g.modules.push(Description);
+
 Description.description = "";
 
 Description.setDescription = function (value) {
@@ -28,4 +30,9 @@ Description.fromJSON = function (input) {
 	if (input[Description.JSONname] != undefined) {
 		Description.setDescription(input[Description.JSONname]);
 	}
+}
+
+
+Description.clear = function () {
+	Description.setDescription("");
 }

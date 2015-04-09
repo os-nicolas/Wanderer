@@ -19,6 +19,28 @@ function scaleLoss(sum) {
 //return sum;
 //}
 
+function addAllSkillTo(select) {
+	for (var name in Skills.netWork.allNodes) {
+		var mySkill = Skills.netWork.allNodes[name];
+		if (mySkill.type == "skill") {
+			select.append("<option value='" + toId(mySkill.name) + "'>" + mySkill.name + "</option>")
+		}
+	};
+}
+
+function updateDropDownsNewSkill(newSkill) {
+	for (var name in Skills.netWork.allNodes) {
+		$('#dropdown-' + name).append("<option value='" + toId(newSkill) + "'>" + newSkill + "</option>")
+	};
+}
+
+function connect(skill1, skill2) {
+	if (skill1 != "" && skill2 != "") {
+		Skills.netWork.help(skill1, skill2);
+	}
+}
+
+
 function Node(name, type, positive) {
 	var that = this;
 	this.type = type;
@@ -35,7 +57,7 @@ function Node(name, type, positive) {
 	$('#connect-' + toId(this.name)).click(function () {
 		var skill1 = that.name;
 		var skill2 = $('#dropdown-' + toId(that.name)).val(); // this is an id we what a name name
-		var skill2 = g.character.netWork.allNodes[skill2].name; // so we look it up
+		var skill2 = Skills.netWork.allNodes[skill2].name; // so we look it up
 		console.log("s1: " + skill1 + " s2: " + skill2);
 		if (skill2 != "-") {
 			connect(skill1, skill2);
@@ -46,7 +68,7 @@ function Node(name, type, positive) {
 	this.helps = function () {
 		var result = [];
 		var that = this;
-		g.character.netWork.connections.forEach(function (connection) {
+		Skills.netWork.connections.forEach(function (connection) {
 			if (connection.from == that) {
 				result.push(connection);
 			}
@@ -57,7 +79,7 @@ function Node(name, type, positive) {
 	this.helpedBy = function () {
 		var result = [];
 		var that = this;
-		g.character.netWork.connections.forEach(function (connection) {
+		Skills.netWork.connections.forEach(function (connection) {
 			if (connection.to == that) {
 				result.push(connection);
 			}
@@ -108,7 +130,7 @@ function Node(name, type, positive) {
 		$("option[value='" + toId(that.name) + "']").remove();
 
 		// remove ourself from network
-		g.character.netWork.deleteNode(that);
+		Skills.netWork.deleteNode(that);
 	}
 
 	$("#delete-" + toId(this.name)).click(this.destory);

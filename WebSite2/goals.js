@@ -1,5 +1,7 @@
 function Goals() { }
 
+g.modules.push(Goals);
+
 Goals.count = 3;
 Goals.goals = [];
 for (var i = 0; i < Goals.count; i++) {
@@ -35,5 +37,11 @@ Goals.fromJSON = function (input) {
 		for (var i = 0; i < input[Goals.JSONname].length; i++) {
 			Goals.setGoal(input[Goals.JSONname][i].i);
 		}
+	}
+}
+
+Goals.clear = function () {
+	for (var i = 0; i < Goals.count; i++) {
+		Goals.setGoal("", i);
 	}
 }

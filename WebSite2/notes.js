@@ -1,5 +1,7 @@
 function Notes() { }
 
+g.modules.push(Notes);
+
 Notes.notes = "";
 
 Notes.setNotes = function (value) {
@@ -27,4 +29,8 @@ Notes.fromJSON = function (input) {
 	if (input[Notes.JSONname] != undefined) {
 		Notes.setNotes(input[Notes.JSONname]);
 	}
+}
+
+Notes.clear = function () {
+	Notes.setNotes("");
 }

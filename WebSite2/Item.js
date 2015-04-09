@@ -8,7 +8,7 @@ function Item(name, bonus) {
 
         this.ui.remove();
 
-        g.character.deleteItem(this);
+        Items.deleteItem(this);
     }
     var that = this;
     this.ui.find("#delete-" + toId(this.name)).click(function () { that.destory() });

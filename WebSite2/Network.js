@@ -1,11 +1,10 @@
-﻿function NetWork(char,json) {
+﻿function NetWork(json) {
     this.allNodes = {};
     this.connections = [];
-    char.netWork = this;
     this.add = function (name,type, positive) {
         var newNode = new Node(name, type, positive);
         this.allNodes[toId(name)+""] = newNode;
-        updateValues();
+        Skills.updateValues();
         return newNode;
     }
     this.help = function (fromString, toString) {
@@ -13,7 +12,7 @@
         var toNode = this.allNodes[toId(toString)];
         new Connection(fromNode, toNode);
 
-        updateValues();
+        Skills.updateValues();
         updateBonus();
     }
 
@@ -24,14 +23,14 @@
         }
 
         //update bonuses and values
-        updateValues();
+        Skills.updateValues();
         updateBonus();
     }
 
     this.deleteNode = function (node) {
     	delete this.allNodes[toId(node.name) + ""];
 
-        updateValues();
+    	Skills.updateValues();
         updateBonus();
     }
 

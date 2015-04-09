@@ -1,5 +1,7 @@
 function Name() { }
 
+g.modules.push(Name);
+
 Name.name = "";
 
 Name.setName = function (value) {
@@ -29,4 +31,8 @@ Name.fromJSON = function (input) {
 	if (input[Name.JSONname] != undefined) {
 		Name.setName(input[Name.JSONname]);
 	}
+}
+
+Name.clear = function () {
+	Name.setName("");
 }

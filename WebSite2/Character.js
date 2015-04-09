@@ -1,8 +1,7 @@
 function Character(json) {
-	this.items = {};
-	this.notes = "";
+	
     this.cardCount = 0;
-    this.netWork = new NetWork(this);
+
     g.character = this;
 
     this.setNotes = function (notes) {
@@ -11,10 +10,12 @@ function Character(json) {
 
     this.clear = function () {
         console.log("char - tried to clear");
-        this.netWork.clear();
-        for (var itemName in this.items) {
-            this.items[itemName].destory();
-        }
+        
+
+        g.modules.forEach(function (mod) {
+        	mod.clear();
+        });
+
         //remove all the cards
         $(".card").remove();
     }
@@ -30,13 +31,7 @@ function Character(json) {
 
     if (json != undefined) {
 
-        // load items
-        for (var item in json["items"]) {
-        	this.items[toId(item)] = Item.makeItem(json["items"][item]);
-        }
-
-        // load network
-        new NetWork(this,json["netWork"]);
+       
 
         // load cards
         var that = this;
@@ -49,23 +44,8 @@ function Character(json) {
         });
     }
 
-
-
-    this.deleteItem = function (item) {
-        delete this.items[toId(item.name)];
-
-        updateBonus();
-    }
-
     this.toJSON = function () {
         var out = {}
-        // save items
-        out["items"] = {}
-        for (var item in this.items) {
-            out["items"][item] = this.items[item].toJSON();
-        }
-        //save network
-        out["netWork"] = this.netWork.toJSON();
 
         //save cards
         out["cards"] = []
