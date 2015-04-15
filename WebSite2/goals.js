@@ -35,7 +35,7 @@ Goals.toJSON = function (out) {
 Goals.fromJSON = function (input) {
 	if (input[Goals.JSONname] != undefined) {
 		for (var i = 0; i < input[Goals.JSONname].length; i++) {
-			Goals.setGoal(input[Goals.JSONname][i].i);
+			Goals.setGoal(input[Goals.JSONname][i],i);
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿function NetWork(json) {
+	Skills.netWork = this;
     this.allNodes = {};
     this.connections = [];
     this.add = function (name,type, positive) {
@@ -31,7 +32,7 @@
     	delete this.allNodes[toId(node.name) + ""];
 
     	Skills.updateValues();
-        updateBonus();
+    	updateBonus();
     }
 
     if (json != undefined) {

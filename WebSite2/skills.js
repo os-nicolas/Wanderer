@@ -47,7 +47,8 @@ Skills.toJSON = function (out) {
 
 Skills.fromJSON = function (input) {
 	// load network
-	Skills.netWork = new NetWork(input[Skills.JSONname]);
+	new NetWork(input[Skills.JSONname]);
+	Skills.updateValues();
 }
 
 Skills.clear = function () {
