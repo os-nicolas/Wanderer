@@ -1,4 +1,5 @@
 // global, i don't think i want anything in the actual global namespaces
+// g means public
 function g() { };
 
 g.updateMode = function (write) {
@@ -18,6 +19,10 @@ g.none = "-";
 g.character = new Character();
 g.modules = [];
 
+g.updateBonus = function () {
+	var sum = getBonus();
+	$('#totalBonus').text(truncate(sum, 1));
+}
 
 
 $(document).ready(function () {
@@ -42,11 +47,7 @@ $(document).ready(function () {
 		g.updateMode(!g.write);
 	});
 
-	$("#add-card").click(function () {
-		g.character.addCard("");
-	})
-
-	$("#misc").change(updateBonus);
+	$("#misc").change(g.updateBonus);
 
 	g.modules.forEach(function (mod) {
 		mod.init();
@@ -68,16 +69,12 @@ function getBonus() {
 	sum += Number($("#misc").val());
 
 	g.modules.forEach(function (mod) {
-		sum + mod.getBonus();
+		sum += mod.getBonus();
 	});
 
 	return sum;
 }
 
-function updateBonus() {
-	var sum = getBonus();
-	$('#totalBonus').text(truncate(sum, 1));
-}
 
 
 function toId(skillName) {

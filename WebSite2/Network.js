@@ -14,7 +14,7 @@
         new Connection(fromNode, toNode);
 
         Skills.updateValues();
-        updateBonus();
+        g.updateBonus();
     }
 
     this.deleteConnection = function(connection){
@@ -25,14 +25,14 @@
 
         //update bonuses and values
         Skills.updateValues();
-        updateBonus();
+        g.updateBonus();
     }
 
     this.deleteNode = function (node) {
     	delete this.allNodes[toId(node.name) + ""];
 
     	Skills.updateValues();
-    	updateBonus();
+    	g.updateBonus();
     }
 
     if (json != undefined) {

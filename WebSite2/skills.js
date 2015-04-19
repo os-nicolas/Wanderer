@@ -17,7 +17,7 @@ Skills.updateValues = function() {
 		var skill = Skills.netWork.allNodes[skillName];
 		var value = skill.getBonus();
 		$("#skill-root-" + toId(skill.name)).find('.value').text(truncate(value, 1));
-		console.log("", $("#skill-root-" + toId(skill.name)).find('.value'));//
+		//console.log("", $("#skill-root-" + toId(skill.name)).find('.value'));//
 	};
 }
 

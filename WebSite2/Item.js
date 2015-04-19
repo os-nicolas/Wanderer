@@ -25,7 +25,7 @@ function Item(name, bonus) {
         this.value(bonus);
     }
 
-    this.ui.find('.check').change(updateBonus);
+    this.ui.find('.check').change(g.updateBonus);
 
     this.checked = function () {
         return this.ui.find('.check').is(':checked');

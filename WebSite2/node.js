@@ -53,7 +53,7 @@ function Node(name, type, positive) {
 	}
 	addAllSkillTo($('#dropdown-' + toId(this.name)));
 	this.ui = $("#skill-root-" + toId(this.name));
-	this.ui.find('.check').change(updateBonus);
+	this.ui.find('.check').change(g.updateBonus);
 	$('#connect-' + toId(this.name)).click(function () {
 		var skill1 = that.name;
 		var skill2 = $('#dropdown-' + toId(that.name)).val(); // this is an id we what a name name

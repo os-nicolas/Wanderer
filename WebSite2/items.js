@@ -30,7 +30,7 @@ Items.JSONname = "items";
 Items.deleteItem = function (item) {
 	delete Items.items[toId(item.name)];
 
-	updateBonus();
+	g.updateBonus();
 }
 
 Items.toJSON = function (out) {
