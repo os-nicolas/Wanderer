@@ -16,6 +16,7 @@
 		<script src="items.js"></script>
 		<script src="Item.js"></script>
 		<!--goals-->
+		<script src="goal.js"></script>
 		<script src="goals.js"></script>
 		<!--description-->
 		<script src="description.js"></script>
@@ -28,8 +29,8 @@
 		<script src="Network.js"></script>
 		<script src="Connection.js"></script>
 		<script src="skills.js"></script>
-		<!--skills-->
-		<script src="cards.js"></script>
+		<!--cards-->
+		<!--<script src="cards.js"></script>-->
 		
 		
 	<!--styles-->
@@ -142,9 +143,26 @@
 						</ol>
 					</div>
 					<div class="write">
-						<textarea id="goal-edit-1" class="goal-edit char-text"></textarea>
-						<textarea id="goal-edit-2" class="goal-edit char-text"></textarea>
-						<textarea id="goal-edit-3" class="goal-edit char-text"></textarea>
+						<ol>
+							<li>
+								<textarea id="goal-edit-1" class="goal-edit char-text"></textarea>
+								effort:<input id="goal-effort-1" type="number" class="counter" value="0">
+								<button type="button">pass</button>
+								<button type="button">failed</button>
+							</li>
+							<li>
+								<textarea id="goal-edit-2" class="goal-edit char-text"></textarea>
+								effort:<input id="goal-effort-2" type="number" class="counter" value="0">
+								<button type="button">pass</button>
+								<button type="button">failed</button>
+							</li>
+							<li>
+								<textarea id="goal-edit-3" class="goal-edit char-text"></textarea>
+								effort:<input id="goal-effort-3" type="number" class="counter" value="0">
+								<button type="button">pass</button>
+								<button type="button">failed</button>
+							</li>
+						</ol>
 					</div>
 				</div>
 			</div>

@@ -28,7 +28,7 @@ Cards.init = function () {
 	})
 
 	for (var i = 0; i < Cards.cards.length; i++) {
-		$("#goal-edit-" + i).keyup(function () {
+		$("#card-edit-" + i).keyup(function () {
 			Cards.setCards($(this).val(), i);
 		});
 	}
