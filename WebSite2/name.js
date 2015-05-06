@@ -12,7 +12,7 @@ Name.setName = function (value) {
 }
 
 Name.init = function () {
-	$("#name-edit").keyup(function () {
+    $("#character-name-edit").keyup(function () {
 		Name.setName($(this).val());
 	});
 }
