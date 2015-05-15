@@ -18,6 +18,7 @@
 		<!--goals-->
 		<script src="goal.js"></script>
 		<script src="goals.js"></script>
+        <script src="FailedGoal.js"></script>
 		<!--description-->
 		<script src="description.js"></script>
 		<!--name-->
@@ -31,7 +32,6 @@
 		<script src="skills.js"></script>
 		<!--cards-->
 		<!--<script src="cards.js"></script>-->
-		
 		
 	<!--styles-->
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -130,6 +130,7 @@
 				<h2>Goals:</h2>
 				<div class="section-body fixed-content">
 					<div class="play">
+                        passed: <span id="goal-passed">0</span> failed: <span id="goal-failed">0</span>
 						<ol>
 							<li>
 								<div id="goal-display-1" class="goal-display"></div>
@@ -147,23 +148,24 @@
 							<li>
 								<textarea id="goal-edit-1" class="goal-edit char-text"></textarea>
 								effort:<input id="goal-effort-1" type="number" class="counter" value="0">
-								<button type="button">pass</button>
-								<button type="button">failed</button>
+								<button id="goal-passed-1" type="button">passed</button>
+								<button id="goal-failed-1" type="button">failed</button>
 							</li>
 							<li>
 								<textarea id="goal-edit-2" class="goal-edit char-text"></textarea>
 								effort:<input id="goal-effort-2" type="number" class="counter" value="0">
-								<button type="button">pass</button>
-								<button type="button">failed</button>
+								<button id="goal-passed-2" type="button">passed</button>
+								<button id="goal-failed-2" type="button">failed</button>
 							</li>
 							<li>
 								<textarea id="goal-edit-3" class="goal-edit char-text"></textarea>
 								effort:<input id="goal-effort-3" type="number" class="counter" value="0">
-								<button type="button">pass</button>
-								<button type="button">failed</button>
+								<button id="goal-passed-3" type="button">passed</button>
+								<button id="goal-failed-3" type="button">failed</button>
 							</li>
 						</ol>
 					</div>
+                    <ul id="goal-failed-list" class="element-list"></ul>
 				</div>
 			</div>
 
