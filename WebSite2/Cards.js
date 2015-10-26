@@ -15,7 +15,7 @@ Cards.setCards = function (value, index) {
 }
 
 Cards.addCard = function (text) {
-	$("#cards").append('<textarea class="card" id="card-' + this.cardCount + '"></textarea>');
+    $("#cards").append('<textarea class="card char-text" id="card-' + this.cardCount + '"></textarea>');
 	if (text != undefined) {
 		$("#card-" + this.cardCount).text(text);
 	}

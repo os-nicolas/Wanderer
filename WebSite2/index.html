@@ -31,7 +31,7 @@
 		<script src="Connection.js"></script>
 		<script src="skills.js"></script>
 		<!--cards-->
-		<!--<script src="cards.js"></script>-->
+		<script src="cards.js"></script>
 		
 	<!--styles-->
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -100,6 +100,7 @@
 					<p class="play tip">Skills are ... TODO link to rules</p>
 					Misc:<input type="number" class="counter" id="misc" value="0">
 					current total bonus: <span id="totalBonus">0</span>
+                    <br/>
 					<button id="roll2" class="roll-buton" type="button">roll-2.5!</button>
 					<button id="roll5" class="roll-buton" type="button">roll-5!</button>
 					<button id="roll10" class="roll-buton" type="button">roll-10!</button>
@@ -172,10 +173,10 @@
 			<!-- cards -->
 			<div id="cards-section" class="section">
 				<h1>Cards</h1>
-				<p class="write help">cards are ... TODO link to rules</p>
+				<p class="write tip">cards are ... TODO link to rules</p>
 				<div id="cards">
-					<textarea class="card" id="card-1"></textarea>
-					<textarea class="card" id="card-2"></textarea>
+					<textarea class="card char-text" id="card-1"></textarea>
+					<textarea class="card char-text" id="card-2"></textarea>
 				</div>
 				<button id="add-card" class="write" type="button">add card</button>
 			</div>
