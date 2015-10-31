@@ -57,22 +57,24 @@
 		<div id="content">
 
 			<!--name-->
-			<div id="character-name" class="section">
-
+			<div id="character-name">
 				<div class="play">
 					<h1 id="character-name-display">Character name</h1>
 				</div>
-				<div class="write">
-					Name: <input type="text" id="character-name-edit" />
+				<div class="write section">
+                    <h2 class="section-title">Name:</h2>
+                    <div class="section-body">
+                        Name: <input type="text" id="character-name-edit" />
+                    </div>
 				</div>
 			</div>
 
 			<!--traits, skills-->
 			<div id="skills-sub-section" class="section">
-				<h2>Skills:</h2>
+				<h2 class="section-title">Skills:</h2>
 				<div class="section-body">
 					<p class="write tip">Skills are ... TODO link to rules</p>
-					<div class="write help">
+					<div class="write">
 						Skill:<input id="skill-name" type="text" class="input-element" />
 						<button id="add-skill" type="button">Add skill</button>
 					</div>
@@ -82,10 +84,10 @@
 
 			<!--items-->
 			<div id="items-sub-section" class="section">
-				<h2>Items and Misc Bonuses:</h2>
+				<h2 class="section-title">Items and Misc Bonuses:</h2>
 				<div class="section-body">
 					<p class="write tip">Skills are ... TODO link to rules</p>
-					<div class="write help">
+					<div class="write">
 						Item:<input id="item-name" type="text" class="input-element" />
 						<button id="add-item" type="button">Add item</button>
 					</div>
@@ -95,7 +97,7 @@
 
 			<!--roll-->
 			<div id="roll-section" class="section play">
-				<h2 class="play">Roll</h2>
+				<h2 class="section-title">Roll</h2>
 				<div class="section-body fixed-content">
 					<p class="play tip">Skills are ... TODO link to rules</p>
 					Misc:<input type="number" class="counter" id="misc" value="0">
@@ -114,21 +116,32 @@
 
 			<!--hp and facts-->
 			<div id="counters-section" class="section play">
-				<h2>Counters</h2>
+				<h2 class="section-title">Counters</h2>
 				<div class="section-body fixed-content">
 					<p class="play tip">Skills are ... TODO link to rules</p>
 					<form>
-						HP:
+						<span class="counter-name">HP:</span>
 						<input type="number" class="counter" value="3">
-						Facts:
+                        <br />
+                        <span class="counter-name">Facts:</span>
 						<input type="number" class="counter" value="3">
-					</form>
+                        <br />
+                        <br />
+                        <span class="counter-name">Speed:</span>
+                        <input type="number" class="counter" value="1">
+                        <br />
+                        <span class="counter-name">Offense:</span>
+                        <input type="number" class="counter" value="2">
+                        <br />
+                        <span class="counter-name"> Defense:</span>
+                        <input type="number" class="counter" value="2">
+                    </form>
 				</div>
 			</div>
 
 			<!--goals-->
 			<div id="goals" class="section">
-				<h2>Goals:</h2>
+				<h2 class="section-title">Goals:</h2>
 				<div class="section-body fixed-content">
 					<div class="play">
                         passed: <span id="goal-passed">0</span> failed: <span id="goal-failed">0</span>
@@ -172,18 +185,20 @@
 
 			<!-- cards -->
 			<div id="cards-section" class="section">
-				<h1>Cards</h1>
-				<p class="write tip">cards are ... TODO link to rules</p>
-				<div id="cards">
-					<textarea class="card char-text" id="card-1"></textarea>
-					<textarea class="card char-text" id="card-2"></textarea>
-				</div>
-				<button id="add-card" class="write" type="button">add card</button>
+				<h2 class="section-title">Cards</h2>
+                <div class="section-body">
+                    <p class="write tip">cards are ... TODO link to rules</p>
+                    <div id="cards">
+                        <textarea class="card char-text" id="card-1"></textarea>
+                        <textarea class="card char-text" id="card-2"></textarea>
+                    </div>
+                    <button id="add-card" class="write" type="button">add card</button>
+                </div>
 			</div>
 
 			<!--description -->
 			<div id="description" class="section">
-				<h2>Description:</h2>
+				<h2 class="section-title">Description:</h2>
 				<div class="section-body fixed-content">
 					<div class="play">
 						<div id="description-display"></div>
@@ -196,7 +211,7 @@
 
 			<!--notes-->
 			<div id="notes-section" class="section play">
-				<h2>Notes</h2>
+				<h2 class="section-title">Notes</h2>
 				<div class="section-body fixed-content">
 					<p class="play tip">Skills are ... TODO link to rules</p>
 					<form>
