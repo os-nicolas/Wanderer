@@ -1,3 +1,6 @@
+//TODO modules should all record there verson when they save
+// so we can have elegant backword compadiblity
+
 // global, i don't think i want anything in the actual global namespaces
 // g means public
 function g() { };
@@ -76,8 +79,7 @@ function getBonus() {
 }
 
 
-
+//TODO move this in to skill
 function toId(skillName) {
 	return skillName.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '').toLowerCase();
 }
-

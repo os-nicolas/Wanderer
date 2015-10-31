@@ -5,26 +5,30 @@ g.modules.push(Cards);
 
 Cards.baseCount = 2;
 Cards.cards = [];
-for (var i = 0; i < Cards.baseCount; i++) {
-	Cards.cards.push("");
-}
 
+
+// Card, int
 Cards.setCards = function (value, index) {
-	Goals.cards[index] = value;
-	$("#card-" + (1+index)).val(value);
+    Cards.cards[index] = value;
+    newCard.bind($("#card-" + index), $("#card-active-" + index))
 }
 
-Cards.addCard = function (text) {
-    $("#cards").append('<textarea class="card char-text" id="card-' + this.cardCount + '"></textarea>');
-	if (text != undefined) {
-		$("#card-" + this.cardCount).text(text);
-	}
-	this.cardCount++;
+//Card
+Cards.addCard = function (newCard) {
+    var at = Cards.cards.length;
+    $("#cards").append('<div class="card">'
+                           +'<span class="counter-name write">Active:</span>'
+                           + '<input class="check write" type="checkbox" id="card-active-' + at + '">'
+                           + '<textarea class="card-text char-text write" id="card-' + at + '"></textarea>'
+                        +'</div>');
+    newCard.bind($("#card-" + at), $("#card-active-" + at))
+    Cards.cards.push(newCard);
+
 }
 
 Cards.init = function () {
 	$("#add-card").click(function () {
-		Cards.addCard("");
+	    Cards.addCard(new Card("", true));
 	})
 
 	for (var i = 0; i < Cards.cards.length; i++) {
@@ -41,19 +45,25 @@ Cards.getBonus = function () {
 Cards.JSONname = "cards";
 
 Cards.toJSON = function (out) {
-	//save cards
-	out[Cards.JSONname] = Cards.cards
+    //save cards
+    var myJSON = [];
+    for (var i = 0; i < Cards.cards.length; i++) {
+        myJSON.push(Cards.cards[i].toJSON());
+    }
+    out[Cards.JSONname] = myJSON;
 }
 
 Cards.fromJSON = function (input) {
-
-	// load cards
-	if (input[Cards.JSONname] != undefined) {
-		for (var i = 0; i < input[Cards.JSONname].length; i++) {
+    // load cards
+    var myInput = input[Cards.JSONname]
+    if (myInput != undefined) {
+        for (var i = 0; i < myInput.length; i++) {
+            var card = Card.makeCard(myInput[i])
+            console.log("card", card);
 			if (i < Cards.cards.length) {
-				Cards.setCards(input[Cards.JSONname][i], i);
+			    Cards.setCards(card, i);
 			} else {
-				Cards.addCard(cardText);
+			    Cards.addCard(card);
 			}
 		}
 	}
@@ -64,6 +74,10 @@ Cards.clear = function () {
 	$(".card").remove();
 	// and add the base number back
 	for (var j = 0; j < Cards.baseCount; j++) {
-		Cards.addCard("");
+		Cards.addCard(new Card("",false));
 	}
+}
+
+for (var i = 0; i < Cards.baseCount; i++) {
+    Cards.addCard(new Card("", true));
 }
