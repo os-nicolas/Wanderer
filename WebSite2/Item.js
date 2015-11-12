@@ -8,7 +8,7 @@ function Item(name, bonus) {
 
         this.ui.remove();
 
-        g.character.deleteItem(this);
+        Items.deleteItem(this);
     }
     var that = this;
     this.ui.find("#delete-" + toId(this.name)).click(function () { that.destory() });
@@ -25,7 +25,7 @@ function Item(name, bonus) {
         this.value(bonus);
     }
 
-    this.ui.find('.check').change(updateBonus);
+    this.ui.find('.check').change(g.updateBonus);
 
     this.checked = function () {
         return this.ui.find('.check').is(':checked');

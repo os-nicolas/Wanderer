@@ -3,8 +3,9 @@
     this.from = from;
 
 	$("#" + toId(from.name)).append("<li  id='" + toId(from.name) + "-to-" + toId(to.name) + "'>" + to.name + "<button class='write' id='sub-delete-" + toId(from.name) + "-to-" + toId(to.name) + "' type='button'>delete</button></li>")
-    this.ui = $("#" + toId(from.name) + "-to-" + toId(to.name))
-    g.character.netWork.connections.push(this);
+	this.ui = $("#" + toId(from.name) + "-to-" + toId(to.name))
+
+    Skills.netWork.connections.push(this);
 
     // hide this from drop down
     this.from.dropdown().find("option[value='" + toId(this.to.name) + "']").hide();
@@ -22,7 +23,7 @@
         that.from.dropdown().find("option[value='" + toId(that.to.name) + "']").show();
 
         // tell the network to do it part
-        g.character.netWork.deleteConnection(that);
+        Skills.netWork.deleteConnection(that);
     }
 
     $("#sub-delete-" + toId(this.from.name) +"-to-"+toId(this.to.name)).click(this.destory);
