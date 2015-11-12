@@ -73,11 +73,8 @@ Cards.clear = function () {
 	// remove all the cards
 	$(".card").remove();
 	// and add the base number back
-	for (var j = 0; j < Cards.baseCount; j++) {
-		Cards.addCard(new Card("",false));
-	}
-}
-
-for (var i = 0; i < Cards.baseCount; i++) {
-    Cards.addCard(new Card("", true));
+    // we don't start with any cards
+    //for (var j = 0; j < Cards.baseCount; j++) {
+	//	Cards.addCard(new Card("",false));
+	//}
 }

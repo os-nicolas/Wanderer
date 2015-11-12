@@ -19,20 +19,25 @@
 	z-index: 2;
 }
 
-.section {
-	margin-top: 50px;
-}
+
 
 .section-title {
 	color: white;
-	background-color: #333;
-	padding: 8px;
 	margin: 0px;
 }
 
-.write {
-	padding: 0px 10px;
+.section-header {
+	padding: 8px;
+	background-color: #333;
 }
+
+.hide-button {
+    float:right;
+}
+
+/*.write {
+	padding: 0px 10px;
+}*/
 
 button {
 	outline: none;
@@ -99,13 +104,24 @@ select {
 	border-top: 0px;
 	border-left: 0px;
 	padding: 10px 8px;
+    -webkit-transition: all 0.3s ease;
 }
 
- .section {/*#skills-sub-section, #traits-sub-section, #items-sub-section*/
+ .section {/*#skills-section, #traits-section, #items-section*/
 	padding: 0px 0px;
+    margin-top: 50px;
 	margin-bottom: 20px;
 	background-color: #C2C2C2;
+    -webkit-transition: all 0.3s ease;
 	/*	border: 2px solid #222;*/
+}
+
+
+.section.hidden .section-body {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    /*display: none;*/
 }
 
 ul.element-list {
@@ -194,6 +210,6 @@ li {
 		/*opacity: 1;*/
 	}
 
-#traits-sub-section, .tip, #goals { /*#cards-section, */
+#traits-section, .tip, #goals-section { /*#cards-section, */
 	display: none;
 }

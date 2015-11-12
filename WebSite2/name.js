@@ -2,13 +2,17 @@ function Name() { }
 
 g.modules.push(Name);
 
-Name.name = "";
+
+// we can't use Name.name because that is a thing in java scrip it is the name of Name so Name
+Name.charName = "";
 
 Name.setName = function (value) {
-	Name.name = value;
+    Name.charName = value;
 	$('head title', window.parent.document).text(value);
 	$("#character-name-display").text(value);
-	$("#character-name-edit").val(value);
+	if ($("#character-name-edit").val() != value) {
+	    $("#character-name-edit").val(value);
+	}
 }
 
 Name.init = function () {
@@ -24,7 +28,7 @@ Name.getBonus = function () {
 Name.JSONname = "name";
 
 Name.toJSON = function (out) {
-	out[Name.JSONname] = Name.name;
+    out[Name.JSONname] = Name.charName;
 }
 
 Name.fromJSON = function (input) {

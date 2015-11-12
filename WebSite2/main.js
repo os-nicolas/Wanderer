@@ -52,6 +52,22 @@ $(document).ready(function () {
 
 	$("#misc").change(g.updateBonus);
 
+	$(".hide-button").click(function () {
+        // we go up till we find the section that contains this
+	    var at = $(this);
+	    while (!at.hasClass("section")) {
+	        at = at.parent();
+	    }
+	    // then we 
+	    at.toggleClass("hidden");
+	    if (at.hasClass("hidden")) {
+	        $(this).text("+");
+	    } else {
+	        $(this).text("-");
+	    }
+
+	});
+
 	g.modules.forEach(function (mod) {
 		mod.init();
 	});
