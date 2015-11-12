@@ -14,7 +14,12 @@ function Card(words, active) {
     this.bind = function (textUI, checkUI) {
         // sync the UI to our values
         textUI.val(this.words);
-        checkUI.val(this.active);
+        checkUI.prop('checked', this.active);
+        if (this.active) {
+            textUI.removeClass("write")
+        } else {
+            textUI.addClass("write")
+        }
 
         // add listners
         var that = this;
@@ -23,7 +28,7 @@ function Card(words, active) {
         });
 
         checkUI.change(function () {
-            that.active = $(this).val();
+            that.active = $(this).is(':checked')
             if (that.active) {
                 textUI.removeClass("write")
             } else {
@@ -40,5 +45,6 @@ Card.makeCard = function (json) {
     if ($.type(json) === "string") {
         return new Card(json, false);
     }
-    return new Card(json["name"], json["type"]);
+    console.log("makeCard", json);
+    return new Card(json["words"], json["active"]);
 }

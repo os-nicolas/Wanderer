@@ -10,7 +10,7 @@ Cards.cards = [];
 // Card, int
 Cards.setCards = function (value, index) {
     Cards.cards[index] = value;
-    newCard.bind($("#card-" + index), $("#card-active-" + index))
+    value.bind($("#card-" + index), $("#card-active-" + index))
 }
 
 //Card
@@ -28,14 +28,8 @@ Cards.addCard = function (newCard) {
 
 Cards.init = function () {
 	$("#add-card").click(function () {
-	    Cards.addCard(new Card("", true));
+	    Cards.addCard(new Card("", false));
 	})
-
-	for (var i = 0; i < Cards.cards.length; i++) {
-		$("#card-edit-" + i).keyup(function () {
-			Cards.setCards($(this).val(), i);
-		});
-	}
 }
 
 Cards.getBonus = function () {
@@ -55,6 +49,7 @@ Cards.toJSON = function (out) {
 
 Cards.fromJSON = function (input) {
     // load cards
+    console.log("input",input);
     var myInput = input[Cards.JSONname]
     if (myInput != undefined) {
         for (var i = 0; i < myInput.length; i++) {
@@ -71,13 +66,10 @@ Cards.fromJSON = function (input) {
 
 Cards.clear = function () {
 	// remove all the cards
-	$(".card").remove();
+    $(".card").remove();
+    Cards.cards = [];
 	// and add the base number back
 	for (var j = 0; j < Cards.baseCount; j++) {
 		Cards.addCard(new Card("",false));
 	}
-}
-
-for (var i = 0; i < Cards.baseCount; i++) {
-    Cards.addCard(new Card("", true));
 }
