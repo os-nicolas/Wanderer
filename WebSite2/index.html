@@ -2,131 +2,146 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
-	<!--external dependencies-->
-	<script src="jquery/jquery-2.1.3.min.js"></script>
-	<!--core-->
-	<script src="roll.js"></script>
-	<script src="Color.js"></script>
-	<script src="Character.js"></script>
-	<script src="SaveLoad.js"></script>
-	<script src="main.js"></script>
-	<!--modules-->
-		<!--items-->
-		<script src="items.js"></script>
-		<script src="Item.js"></script>
-		<!--goals-->
-		<script src="goal.js"></script>
-		<script src="goals.js"></script>
-        <script src="FailedGoal.js"></script>
-		<!--description-->
-		<script src="description.js"></script>
-		<!--name-->
-		<script src="name.js"></script>
-		<!--notes-->
-		<script src="notes.js"></script>
-		<!--skills-->
-		<script src="node.js"></script>
-		<script src="Network.js"></script>
-		<script src="Connection.js"></script>
-		<script src="skills.js"></script>
-		<!--cards-->
-        <script src="card.js"></script>
-		<script src="cards.js"></script>
+    <meta charset="utf-8" />
+    <!--external dependencies-->
+    <script src="jquery/jquery-2.1.3.min.js"></script>
+    <!--core-->
+    <script src="roll.js"></script>
+    <script src="Color.js"></script>
+    <script src="Character.js"></script>
+    <script src="SaveLoad.js"></script>
+    <script src="main.js"></script>
+    <!--modules-->
+    <!--items-->
+    <script src="items.js"></script>
+    <script src="Item.js"></script>
+    <!--goals-->
+    <script src="goal.js"></script>
+    <script src="goals.js"></script>
+    <script src="FailedGoal.js"></script>
+    <!--description-->
+    <script src="description.js"></script>
+    <!--name-->
+    <script src="name.js"></script>
+    <!--notes-->
+    <script src="notes.js"></script>
+    <!--skills-->
+    <script src="node.js"></script>
+    <script src="Network.js"></script>
+    <script src="Connection.js"></script>
+    <script src="skills.js"></script>
+    <!--cards-->
+    <script src="card.js"></script>
+    <script src="cards.js"></script>
 
-		
-	<!--styles-->
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,300italic,400italic,700,700italic"
-		  rel="stylesheet" type="text/css">
-	<title></title>
+
+    <!--styles-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,300italic,400italic,700,700italic"
+          rel="stylesheet" type="text/css">
+    <title></title>
 </head>
 <body>
-	<div id="all" class="play">
+    <div id="all" class="play">
 
-		<div id="">
-			<button id="mode" type="button">Done Editing</button>
+        <div id="">
+            <button id="mode" type="button">Done Editing</button>
 
-			<!--load-->
-			<button id="load" type="button">Load</button>
-			<input type="file" id="load-file" style="display:none;" accept=".json">
+            <!--load-->
+            <button id="load" type="button">Load</button>
+            <input type="file" id="load-file" style="display:none;" accept=".json">
 
-			<!--save-->
-			<button id="save" type="button">Save</button>
-			<input type="file" id="save-file" style="display:none;" accept=".json" nwsaveas />
-		</div>
+            <!--save-->
+            <button id="save" type="button">Save</button>
+            <input type="file" id="save-file" style="display:none;" accept=".json" nwsaveas />
+        </div>
 
-		<div id="content">
+        <div id="content">
 
-			<!--name-->
-			<div id="character-name">
-				<div class="play">
-					<h1 id="character-name-display">Character name</h1>
-				</div>
-				<div class="write section">
+            <!--name-->
+            <div id="character-name-section" class="section">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
                     <h2 class="section-title">Name:</h2>
-                    <div class="section-body">
+                </div>
+                <div class="section-body">
+                    <div class="play">
+                        <h1 id="character-name-display">Character name</h1>
+                    </div>
+                    <div class="write">
                         Name: <input type="text" id="character-name-edit" />
                     </div>
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<!--traits, skills-->
-			<div id="skills-sub-section" class="section">
-				<h2 class="section-title">Skills:</h2>
-				<div class="section-body">
-					<p class="write tip">Skills are ... TODO link to rules</p>
-					<div class="write">
-						Skill:<input id="skill-name" type="text" class="input-element" />
-						<button id="add-skill" type="button">Add skill</button>
-					</div>
-					<ul id="skill-element-list" class="element-list"></ul>
-				</div>
-			</div>
+            <!--traits, skills-->
+            <div id="skills-section" class="section">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <h2 class="section-title">Skills:</h2>
+                </div>
+                <div class="section-body">
+                    <p class="write tip">Skills are ... TODO link to rules</p>
+                    <div class="write">
+                        Skill:<input id="skill-name" type="text" class="input-element" />
+                        <button id="add-skill" type="button">Add skill</button>
+                    </div>
+                    <ul id="skill-element-list" class="element-list"></ul>
+                </div>
+            </div>
 
-			<!--items-->
-			<div id="items-sub-section" class="section">
-				<h2 class="section-title">Items and Misc Bonuses:</h2>
-				<div class="section-body">
-					<p class="write tip">Skills are ... TODO link to rules</p>
-					<div class="write">
-						Item:<input id="item-name" type="text" class="input-element" />
-						<button id="add-item" type="button">Add item</button>
-					</div>
-					<ul id="item-element-list" class="element-list"></ul>
-				</div>
-			</div>
+            <!--items-->
+            <div id="items-section" class="section">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <h2 class="section-title">Items and Misc Bonuses:</h2>
+                </div>
+                <div class="section-body">
+                    <p class="write tip">Skills are ... TODO link to rules</p>
+                    <div class="write">
+                        Item:<input id="item-name" type="text" class="input-element" />
+                        <button id="add-item" type="button">Add item</button>
+                    </div>
+                    <ul id="item-element-list" class="element-list"></ul>
+                </div>
+            </div>
 
-			<!--roll-->
-			<div id="roll-section" class="section play">
-				<h2 class="section-title">Roll</h2>
-				<div class="section-body fixed-content">
-					<p class="play tip">Skills are ... TODO link to rules</p>
-					Misc:<input type="number" class="counter" id="misc" value="0">
-					current total bonus: <span id="totalBonus">0</span>
-                    <br/>
-					<button id="roll2" class="roll-buton" type="button">roll-2.5!</button>
-					<button id="roll5" class="roll-buton" type="button">roll-5!</button>
-					<button id="roll10" class="roll-buton" type="button">roll-10!</button>
-					<div class="roll-results">
-						<div id="roll-0" class="roll-result"></div>
-						<div id="roll-1" class="roll-result"></div>
-						<div id="roll-2" class="roll-result"></div>
-					</div>
-				</div>
-			</div>
+            <!--roll-->
+            <div id="roll-section" class="section play">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <h2 class="section-title">Roll</h2>
+                </div>
+                <div class="section-body fixed-content">
+                    <p class="play tip">Skills are ... TODO link to rules</p>
+                    Misc:<input type="number" class="counter" id="misc" value="0">
+                    current total bonus: <span id="totalBonus">0</span>
+                    <br />
+                    <button id="roll2" class="roll-buton" type="button">roll-2.5!</button>
+                    <button id="roll5" class="roll-buton" type="button">roll-5!</button>
+                    <button id="roll10" class="roll-buton" type="button">roll-10!</button>
+                    <div class="roll-results">
+                        <div id="roll-0" class="roll-result"></div>
+                        <div id="roll-1" class="roll-result"></div>
+                        <div id="roll-2" class="roll-result"></div>
+                    </div>
+                </div>
+            </div>
 
-			<!--hp and facts-->
-			<div id="counters-section" class="section play">
-				<h2 class="section-title">Counters</h2>
-				<div class="section-body fixed-content">
-					<p class="play tip">Skills are ... TODO link to rules</p>
-					<form>
-						<span class="counter-name">HP:</span>
-						<input type="number" class="counter" value="3">
+            <!--hp and facts-->
+            <div id="counters-section" class="section play">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <h2 class="section-title">Counters</h2>
+                </div>
+                <div class="section-body fixed-content">
+                    <p class="play tip">Skills are ... TODO link to rules</p>
+                    <form>
+                        <span class="counter-name">HP:</span>
+                        <input type="number" class="counter" value="3">
                         <br />
                         <span class="counter-name">Facts:</span>
-						<input type="number" class="counter" value="3">
+                        <input type="number" class="counter" value="3">
                         <br />
                         <br />
                         <span class="counter-name">Speed:</span>
@@ -138,87 +153,99 @@
                         <span class="counter-name"> Defense:</span>
                         <input type="number" class="counter" value="2">
                     </form>
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<!--goals-->
-			<div id="goals" class="section">
-				<h2 class="section-title">Goals:</h2>
-				<div class="section-body fixed-content">
-					<div class="play">
+            <!--goals-->
+            <div id="goals-section" class="section">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <h2 class="section-title">Goals:</h2>
+                </div>
+                <div class="section-body fixed-content">
+                    <div class="play">
                         passed: <span id="goal-passed">0</span> failed: <span id="goal-failed">0</span>
-						<ol>
-							<li>
-								<div id="goal-display-1" class="goal-display"></div>
-							</li>
-							<li>
-								<div id="goal-display-2" class="goal-display"></div>
-							</li>
-							<li>
-								<div id="goal-display-3" class="goal-display"></div>
-							</li>
-						</ol>
-					</div>
-					<div class="write">
-						<ol>
-							<li>
-								<textarea id="goal-edit-1" class="goal-edit char-text"></textarea>
-								effort:<input id="goal-effort-1" type="number" class="counter" value="0">
-								<button id="goal-passed-1" type="button">passed</button>
-								<button id="goal-failed-1" type="button">failed</button>
-							</li>
-							<li>
-								<textarea id="goal-edit-2" class="goal-edit char-text"></textarea>
-								effort:<input id="goal-effort-2" type="number" class="counter" value="0">
-								<button id="goal-passed-2" type="button">passed</button>
-								<button id="goal-failed-2" type="button">failed</button>
-							</li>
-							<li>
-								<textarea id="goal-edit-3" class="goal-edit char-text"></textarea>
-								effort:<input id="goal-effort-3" type="number" class="counter" value="0">
-								<button id="goal-passed-3" type="button">passed</button>
-								<button id="goal-failed-3" type="button">failed</button>
-							</li>
-						</ol>
-					</div>
+                        <ol>
+                            <li>
+                                <div id="goal-display-1" class="goal-display"></div>
+                            </li>
+                            <li>
+                                <div id="goal-display-2" class="goal-display"></div>
+                            </li>
+                            <li>
+                                <div id="goal-display-3" class="goal-display"></div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="write">
+                        <ol>
+                            <li>
+                                <textarea id="goal-edit-1" class="goal-edit char-text"></textarea>
+                                effort:<input id="goal-effort-1" type="number" class="counter" value="0">
+                                <button id="goal-passed-1" type="button">passed</button>
+                                <button id="goal-failed-1" type="button">failed</button>
+                            </li>
+                            <li>
+                                <textarea id="goal-edit-2" class="goal-edit char-text"></textarea>
+                                effort:<input id="goal-effort-2" type="number" class="counter" value="0">
+                                <button id="goal-passed-2" type="button">passed</button>
+                                <button id="goal-failed-2" type="button">failed</button>
+                            </li>
+                            <li>
+                                <textarea id="goal-edit-3" class="goal-edit char-text"></textarea>
+                                effort:<input id="goal-effort-3" type="number" class="counter" value="0">
+                                <button id="goal-passed-3" type="button">passed</button>
+                                <button id="goal-failed-3" type="button">failed</button>
+                            </li>
+                        </ol>
+                    </div>
                     <ul id="goal-failed-list" class="element-list"></ul>
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<!-- cards -->
-			<div id="cards-section" class="section">
-				<h2 class="section-title">Cards</h2>
+            <!-- cards -->
+            <div id="cards-section" class="section">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <h2 class="section-title">Cards</h2>
+                </div>
                 <div class="section-body">
                     <p class="write tip">cards are ... TODO link to rules</p>
                     <div id="cards">
                     </div>
                     <button id="add-card" class="write" type="button">add card</button>
                 </div>
-			</div>
+            </div>
 
-			<!--description -->
-			<div id="description" class="section">
-				<h2 class="section-title">Description:</h2>
-				<div class="section-body fixed-content">
-					<div class="play">
-						<div id="description-display"></div>
-					</div>
-					<div class="write">
-						<textarea id="description-edit" class="char-text"></textarea>
-					</div>
-				</div>
-			</div>
+            <!--description -->
+            <div id="description-section" class="section">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <h2 class="section-title">Description:</h2>
+                </div>
+                <div class="section-body fixed-content">
+                    <div class="play">
+                        <div id="description-display"></div>
+                    </div>
+                    <div class="write">
+                        <textarea id="description-edit" class="char-text"></textarea>
+                    </div>
+                </div>
+            </div>
 
-			<!--notes-->
-			<div id="notes-section" class="section play">
-				<h2 class="section-title">Notes</h2>
-				<div class="section-body fixed-content">
-					<p class="play tip">Skills are ... TODO link to rules</p>
-					<form>
-						<textarea id="notes" class="char-text"></textarea>
-					</form>
-				</div>
-			</div>
-		</div>
+            <!--notes-->
+            <div id="notes-section" class="section play">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <h2 class="section-title">Notes</h2>
+                </div>
+                <div class="section-body fixed-content">
+                    <p class="play tip">Skills are ... TODO link to rules</p>
+                    <form>
+                        <textarea id="notes" class="char-text"></textarea>
+                    </form>
+                </div>
+            </div>
+        </div>
 </body>
 </html>

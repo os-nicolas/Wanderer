@@ -68,8 +68,10 @@ Cards.clear = function () {
 	// remove all the cards
     $(".card").remove();
     Cards.cards = [];
-	// and add the base number back
-	for (var j = 0; j < Cards.baseCount; j++) {
-		Cards.addCard(new Card("",false));
-	}
+
+    // we don't start with any cards
+    //for (var j = 0; j < Cards.baseCount; j++) {
+	//	Cards.addCard(new Card("",false));
+	//}
+
 }

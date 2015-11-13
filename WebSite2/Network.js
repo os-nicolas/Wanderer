@@ -29,8 +29,7 @@
     }
 
     this.deleteNode = function (node) {
-    	delete this.allNodes[toId(node.name) + ""];
-
+        delete this.allNodes[toId(node.name)];
     	Skills.updateValues();
     	g.updateBonus();
     }
@@ -38,7 +37,7 @@
     if (json != undefined) {
         // add nodes
         for (var name in json["allNodes"]) {
-        	this.allNodes[toId(name)] = Node.makeNode(json["allNodes"][name]);
+            this.allNodes[toId(name)] = Node.makeNode(json["allNodes"][name]);
         }
 
         console.log(this.allNodes);
@@ -55,7 +54,7 @@
 
     this.clear = function () {
         for (var name in this.allNodes) {
-            this.allNodes[name].destory();
+            this.allNodes[toId(name)].destory();
         }
     }
 
