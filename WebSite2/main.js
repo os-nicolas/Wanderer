@@ -41,18 +41,18 @@ function isbefore(a, b) {
 }
 
 function dragenter(e) {
-    console.log("enter!",e)
-    if (isbefore(source, e.originalEvent.target)) {
-        e.originalEvent.target.parentNode.insertBefore(source, e.originalEvent.target);
+    console.log("enter!", this)
+    if (isbefore(source, this)) {
+        this.parentNode.insertBefore(source, this);
     }
     else {
-        e.originalEvent.target.parentNode.insertBefore(source, e.originalEvent.target.nextSibling);
+        this.parentNode.insertBefore(source, this.nextSibling);
     }
 }
 
 function dragstart(e) {
-    console.log("start!")
-    source = e.originalEvent.target;
+    console.log("start!", this)
+    source = this;
     e.originalEvent.dataTransfer.effectAllowed = 'move';
 }
 
