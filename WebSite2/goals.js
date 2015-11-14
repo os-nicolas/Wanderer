@@ -10,10 +10,9 @@ Goals.failed = 0;
 for (var i = 0; i < Goals.count; i++) {
 	Goals.goals.push(new Goal());
 }
-console.log("goals:", Goals.goals);
+
 
 Goals.setGoal = function (value, index) {
-	console.log("goal:" + (index - 1), Goals.goals)
 	Goals.goals[index-1].words = value;
 	$("#goal-display-"+index).html(value.replace(/\r?\n/g, "<br />"));
 	$("#goal-edit-" + index).val(value);

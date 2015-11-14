@@ -46,9 +46,9 @@ $(document).ready(function () {
 
 	$("#roll10").click(Rolls.getRollFunction(10));
 
-	$("#mode").click(function () {
-		g.updateMode(!g.write);
-	});
+	//$("#mode").click(function () {
+	//	g.updateMode(!g.write);
+	//});
 
 	$("#misc").change(g.updateBonus);
 
@@ -60,12 +60,43 @@ $(document).ready(function () {
 	    }
 	    // then we 
 	    at.toggleClass("hidden");
-	    if (at.hasClass("hidden")) {
-	        $(this).text("+");
+	    //if (at.hasClass("hidden")) {
+	    //    $(this).text("+");
+	    //} else {
+	    //    $(this).text("-");
+	    //}
+
+	});
+
+	$(".edit-button").click(function () {
+	    // we go up till we find the section that contains this
+	    var at = $(this);
+	    while (!at.hasClass("section")) {
+	        at = at.parent();
+	    }
+	    // then we 
+	    at.toggleClass("play");
+	    at.toggleClass("write");
+	    if (at.hasClass("play")) {
+	        $(this).text("edit");
 	    } else {
-	        $(this).text("-");
+	        $(this).text("done");
 	    }
 
+	});
+
+	var buttons = $(".edit-button");
+	console.log("buttons", buttons);
+	buttons.each(function () {
+	    var at = $(this);
+	    while (!at.hasClass("section")) {
+	        at = at.parent();
+	    }
+	    if (at.hasClass("play")) {
+	        $(this).text("edit");
+	    } else {
+	        $(this).text("done");
+	    }
 	});
 
 	g.modules.forEach(function (mod) {
