@@ -27,6 +27,34 @@ g.updateBonus = function () {
 	$('#totalBonus').text(truncate(sum, 1));
 }
 
+var source;
+
+function isbefore(a, b) {
+    if (a.parentNode == b.parentNode) {
+        for (var cur = a; cur; cur = cur.previousSibling) {
+            if (cur === b) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function dragenter(e) {
+    console.log("enter!",e)
+    if (isbefore(source, e.originalEvent.target)) {
+        e.originalEvent.target.parentNode.insertBefore(source, e.originalEvent.target);
+    }
+    else {
+        e.originalEvent.target.parentNode.insertBefore(source, e.originalEvent.target.nextSibling);
+    }
+}
+
+function dragstart(e) {
+    console.log("start!")
+    source = e.originalEvent.target;
+    e.originalEvent.dataTransfer.effectAllowed = 'move';
+}
 
 $(document).ready(function () {
 
@@ -46,6 +74,10 @@ $(document).ready(function () {
 
 	$("#roll10").click(Rolls.getRollFunction(10));
 
+	$(".drag").on('dragenter', dragenter);
+
+	$(".drag").on('dragstart', dragstart);
+
 	//$("#mode").click(function () {
 	//	g.updateMode(!g.write);
 	//});
@@ -60,11 +92,11 @@ $(document).ready(function () {
 	    }
 	    // then we 
 	    at.toggleClass("hidden");
-	    //if (at.hasClass("hidden")) {
-	    //    $(this).text("+");
-	    //} else {
-	    //    $(this).text("-");
-	    //}
+	    if (at.hasClass("hidden")) {
+	        $(this).text("+");
+	    } else {
+	        $(this).text("-");
+	    }
 
 	});
 
@@ -124,7 +156,6 @@ function getBonus() {
 
 	return sum;
 }
-
 
 //TODO move this in to skill
 function toId(skillName) {

@@ -55,9 +55,9 @@
             <input type="file" id="save-file" style="display:none;" accept=".json" nwsaveas />
         </div>
 
-        <table id="content">
-            <tr>
-                <td class="column">
+        <div id="content">
+            <ul>
+                <li draggable="true" class="drag">
                     <!--name-->
                     <div id="character-name-section" class="section write">
                         <div class="section-header">
@@ -74,7 +74,8 @@
                             </div>
                         </div>
                     </div>
-
+                </li>
+                <li draggable="true" class="drag">
                     <!--description -->
                     <div id="description-section" class="section write">
                         <div class="section-header">
@@ -91,7 +92,8 @@
                             </div>
                         </div>
                     </div>
-
+                </li>
+                <li draggable="true" class="drag">
                     <!--goals-->
                     <div id="goals-section" class="section write">
                         <div class="section-header">
@@ -139,10 +141,8 @@
                             <ul id="goal-failed-list" class="element-list"></ul>
                         </div>
                     </div>
-
-                </td>
-                <td class="column">
-                
+                </li>
+                <li draggable="true" class="drag">
                     <!--traits, skills-->
                     <div id="skills-section" class="section write">
                         <div class="section-header">
@@ -159,7 +159,8 @@
                             <ul id="skill-element-list" class="element-list"></ul>
                         </div>
                     </div>
-
+                </li>
+                <li draggable="true" class="drag">
                     <!--items-->
                     <div id="items-section" class="section write">
                         <div class="section-header">
@@ -176,7 +177,8 @@
                             <ul id="item-element-list" class="element-list"></ul>
                         </div>
                     </div>
-
+                </li>
+                <li draggable="true" class="drag">
                     <!-- cards -->
                     <div id="cards-section" class="section write">
                         <div class="section-header">
@@ -191,9 +193,8 @@
                             <button id="add-card" class="write" type="button">add card</button>
                         </div>
                     </div>
-
-                </td>
-                <td class="column">
+                </li>
+                <li draggable="true" class="drag">
                     <!--roll-->
                     <div id="roll-section" class="section play">
                         <div class="section-header">
@@ -216,7 +217,8 @@
                             </div>
                         </div>
                     </div>
-
+                </li>
+                <li draggable="true" class="drag">
                     <!--hp and facts-->
                     <div id="counters-section" class="section play">
                         <div class="section-header">
@@ -245,7 +247,8 @@
                             </form>
                         </div>
                     </div>
-
+                </li>
+                <li draggable="true" class="drag">
                     <!--notes-->
                     <div id="notes-section" class="section play">
                         <div class="section-header">
@@ -260,8 +263,8 @@
                             </form>
                         </div>
                     </div>
-                </td>
-            </tr>
-        </table>
+                </li>
+            </ul>
+        </div>
 </body>
 </html>
