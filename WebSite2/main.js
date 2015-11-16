@@ -50,6 +50,11 @@ function dragenter(e) {
     }
 }
 
+function dragenterdiv(e) {
+    // we always insert before a divider
+    this.parentNode.insertBefore(source, this);
+}
+
 function dragstart(e) {
     console.log("start!", this)
     source = this;
@@ -75,6 +80,8 @@ $(document).ready(function () {
 	$("#roll10").click(Rolls.getRollFunction(10));
 
 	$(".drag").on('dragenter', dragenter);
+
+	$(".divider").on('dragenter', dragenterdiv);
 
 	$(".drag").on('dragstart', dragstart);
 
