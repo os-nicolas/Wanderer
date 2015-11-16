@@ -52,6 +52,11 @@ function dragenter(e) {
     }
 }
 
+function dragenterdiv(e) {
+    // we always insert before a divider
+    this.parentNode.insertBefore(source, this);
+}
+
 function dragstart(e) {
     //console.log("start!", this)
     source = this;
@@ -80,9 +85,12 @@ $(document).ready(function () {
 
     $(".drag").on('dragstart', dragstart);
 
+
     //$("#mode").click(function () {
     //	g.updateMode(!g.write);
     //});
+	$(".divider").on('dragenter', dragenterdiv);
+
 
     $("#misc").change(g.updateBonus);
 
