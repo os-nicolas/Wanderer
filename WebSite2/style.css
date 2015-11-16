@@ -42,6 +42,10 @@
     -webkit-column-break-inside: avoid; 
 }
 
+.divider {
+    -webkit-column-break-after:always; 
+}
+
 .section-title {
     color: white;
     margin: 0px;
