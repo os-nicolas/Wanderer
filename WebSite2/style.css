@@ -1,4 +1,7 @@
-﻿body {
+﻿/*px are bad bad bad bad! plz fix*/
+
+
+body {
     top: 0px;
     margin: 0;
     padding: 0;
@@ -23,9 +26,13 @@
     user-select: none;
 }
 
+/*
+    this next section we do stuff with the columns
+*/
+
 #content {
     -webkit-column-width: 450px;
-    -webkit-column-fill: balance;
+    /*-webkit-column-fill: balance;*/
     padding-left: 5px;
     padding-right: 5px;
     margin-left:5%;
@@ -44,9 +51,38 @@
 
 .divider {
     -webkit-column-break-after:always; 
+    display: none;
 }
 
-.section-title {
+@media only screen and (min-width:0px) {
+    #divider4 {
+        display:block;
+    }
+}
+
+@media only screen and (min-width:1059px) {
+    #divider3 {
+        display:block;
+    }
+}
+
+@media only screen and (min-width:1579px) {
+    #divider2 {
+        display:block;
+    }
+}
+
+@media only screen and (min-width:2099px) {
+    #divider1 {
+        display:block;
+    }
+}
+
+.mock-section-title {
+    visibility: hidden;
+}
+
+.section-title ,.mock-section-title {
     color: white;
     margin: 0px;
 }
@@ -56,7 +92,7 @@
     /*padding: 0px 10px;*/
 }
 
-.section-header {
+.section-header ,.divider {
     padding: 8px;
     background-color: #333;
 }
@@ -140,10 +176,10 @@ select {
     -webkit-transition: all 0.3s ease;
 }
 
-.section { /*#skills-section, #traits-section, #items-section*/
-    padding: 30px 0px 20px 0px;
-    /*margin-top: 50px;
-    margin-bottom: 20px;*/
+.section , .mock-section { /*#skills-section, #traits-section, #items-section*/
+    /*padding: 30px 0px 20px 0px;*/
+    margin-top: 50px;
+    margin-bottom: 20px;
     -webkit-transition: all 0.3s ease;
     /*	border: 2px solid #222;*/
 }
