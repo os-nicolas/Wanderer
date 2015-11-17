@@ -1,24 +1,29 @@
-function Name() { }
+function Name() {//$scope
+}
 
 g.modules.push(Name);
+g.WandererApp.controller("Name", function ($scope) {
+    Name.model = $scope;
+    Name.model.charName = ""
+});
 
 
 // we can't use Name.name because that is a thing in java scrip it is the name of Name so Name
-Name.charName = "";
+// Name.model.charName = "";
 
 Name.setName = function (value) {
-    Name.charName = value;
-	$('head title', window.parent.document).text(value);
-	$("#character-name-display").text(value);
-	if ($("#character-name-edit").val() != value) {
-	    $("#character-name-edit").val(value);
-	}
+    Name.model.charName = value;
+	//$('head title', window.parent.document).text(value);
+	//$("#character-name-display").text(value);
+	//if ($("#character-name-edit").val() != value) {
+	//    $("#character-name-edit").val(value);
+	//}
 }
 
 Name.init = function () {
-    $("#character-name-edit").keyup(function () {
-		Name.setName($(this).val());
-	});
+    //$("#character-name-edit").keyup(function () {
+	//	Name.setName($(this).val());
+	//});
 }
 
 Name.getBonus = function () {
@@ -28,7 +33,7 @@ Name.getBonus = function () {
 Name.JSONname = "name";
 
 Name.toJSON = function (out) {
-    out[Name.JSONname] = Name.charName;
+    out[Name.JSONname] = Name.model.charName;
 }
 
 Name.fromJSON = function (input) {

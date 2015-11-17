@@ -20,6 +20,7 @@ g.updateMode = function (write) {
 
 g.none = "-";
 g.character = new Character();
+g.WandererApp = angular.module('WandererApp', []);
 g.modules = [];
 
 g.updateBonus = function () {
@@ -128,7 +129,6 @@ $(document).ready(function () {
     });
 
     var buttons = $(".edit-button");
-    console.log("buttons", buttons);
     buttons.each(function () {
         var at = $(this);
         while (!at.hasClass("section")) {
@@ -141,7 +141,11 @@ $(document).ready(function () {
         }
     });
 
+
+    console.log("modules: ", g.modules);
     g.modules.forEach(function (mod) {
+        console.log("mod: ", mod);
+        // TODO this was breaking stuff
         mod.init();
     });
 });

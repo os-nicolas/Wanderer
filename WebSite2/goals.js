@@ -46,8 +46,6 @@ Goals.setFailed = function (newValue) {
 }
 
 Goals.init = function () {
-    console.log(Goals.goals.length)
-
 	for (var i = 1; i < Goals.count + 1; i++) {
 		$("#goal-edit-" + i).keyup((function(myI){
 			return function () {
