@@ -1,18 +1,23 @@
 function Notes() { }
 
 g.modules.push(Notes);
+g.WandererApp.controller("Notes", function ($scope) {
+    Notes.model = $scope;
+    Notes.model.notes = ""
+});
 
-Notes.notes = "";
+//Notes.notes = "";
 
 Notes.setNotes = function (value) {
-	Notes.notes = value;
-	$("#notes").text(value);
+    Notes.model.notes = value;
+    Notes.model.$apply();
+	//$("#notes").text(value);
 }
 
 Notes.init = function () {
-	$("#notes").keyup(function () {
-		Notes.setNotes($(this).val());
-	});
+	//$("#notes").keyup(function () {
+	//	Notes.setNotes($(this).val());
+	//});
 }
 
 Notes.getBonus = function () {
@@ -22,7 +27,7 @@ Notes.getBonus = function () {
 Notes.JSONname = "notes";
 
 Notes.toJSON = function (out) {
-	out[Notes.JSONname] = Notes.notes;
+    out[Notes.JSONname] = Notes.model.notes;
 }
 
 Notes.fromJSON = function (input) {

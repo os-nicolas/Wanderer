@@ -13,6 +13,7 @@ g.WandererApp.controller("Name", function ($scope) {
 
 Name.setName = function (value) {
     Name.model.charName = value;
+    Name.model.$apply();
 	//$('head title', window.parent.document).text(value);
 	//$("#character-name-display").text(value);
 	//if ($("#character-name-edit").val() != value) {

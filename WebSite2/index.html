@@ -62,7 +62,7 @@
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
-                    <h2 class="section-title">Name:</h2>
+                    <h2 class="section-title">Name</h2>
                 </div>
                 <div class="section-body">
                     <div class="play">
@@ -75,18 +75,18 @@
                 </div>
             </div>
             <!--description -->
-            <div id="description-section" draggable="true" class="drag section write">
+            <div id="description-section" draggable="true" class="drag section write" data-ng-controller="Description">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
-                    <h2 class="section-title">Description:</h2>
+                    <h2 class="section-title">Description</h2>
                 </div>
                 <div class="section-body fixed-content">
                     <div class="play">
-                        <div id="description-display"></div>
+                        <div id="description-display"><p>{{description}}</p></div>
                     </div>
                     <div class="write">
-                        <textarea id="description-edit" class="char-text"></textarea>
+                        <textarea id="description-edit" class="char-text"  data-ng-model="description"></textarea>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
-                    <h2 class="section-title">Goals:</h2>
+                    <h2 class="section-title">Goals</h2>
                 </div>
                 <div class="section-body fixed-content">
                     <div class="play">
@@ -146,7 +146,7 @@
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
-                    <h2 class="section-title">Skills:</h2>
+                    <h2 class="section-title">Skills</h2>
                 </div>
                 <div class="section-body">
                     <p class="write tip">Skills are ... TODO link to rules</p>
@@ -248,7 +248,7 @@
                 </div>
             </div>
             <!--notes-->
-            <div id="notes-section" draggable="true" class="drag section play">
+            <div id="notes-section" draggable="true" class="drag section play" data-ng-controller="Notes">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <!--<button class="edit-button" type="button">edit</button>-->
@@ -257,7 +257,7 @@
                 <div class="section-body fixed-content">
                     <p class="play tip">Skills are ... TODO link to rules</p>
                     <form>
-                        <textarea id="notes" class="char-text"></textarea>
+                        <textarea id="notes" class="char-text" data-ng-model="notes"></textarea>
                     </form>
                 </div>
             </div>

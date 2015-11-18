@@ -1,19 +1,25 @@
 function Description() { }
 
 g.modules.push(Description);
+g.WandererApp.controller("Description", function ($scope) {
+    Description.model = $scope;
 
-Description.description = "";
+});
+
+//Description.description = "";
 
 Description.setDescription = function (value) {
-	Description.description = value;
-	$("#description-display").html(value.replace(/\r?\n/g, "<br />"));
-	$("#description-edit").val(value);
+    //console.log("set description to : " + value + " it was: " + Description.model.description);
+    Description.model.description = value;
+    Description.model.$apply();
+    //$("#description-display").html(value.replace(/\r?\n/g, "<br />"));
+    //$("#description-edit").val(value);
 }
 
 Description.init = function () {
-	$("#description-edit").keyup(function () {
-		Description.setDescription($(this).val());
-	});
+	//$("#description-edit").keyup(function () {
+	//	Description.setDescription($(this).val());
+	//});
 }
 
 Description.getBonus = function () {
@@ -23,16 +29,15 @@ Description.getBonus = function () {
 Description.JSONname = "description";
 
 Description.toJSON = function (out) {
-	out[Description.JSONname] = Description.description;
+    out[Description.JSONname] = Description.model.description;
 }
 
 Description.fromJSON = function (input) {
 	if (input[Description.JSONname] != undefined) {
-		Description.setDescription(input[Description.JSONname]);
+	    Description.setDescription(input[Description.JSONname]);
 	}
 }
 
-
 Description.clear = function () {
-	Description.setDescription("");
+    Description.setDescription("");
 }
