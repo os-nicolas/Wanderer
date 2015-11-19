@@ -1,6 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE html  >
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" data-ng-app="WandererApp">
 <head>
     <meta charset="utf-8" />
     <!--external dependencies-->
@@ -40,9 +40,9 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,300italic,400italic,700,700italic"
           rel="stylesheet" type="text/css">
-    <title></title>
+    <title data-ng-controller="Name">{{charName}}</title>
 </head>
-<body data-ng-app="WandererApp">
+<body>
     <div id="all">
 
         <div id="">
@@ -61,7 +61,7 @@
             <div id="character-name-section" draggable="true" class="drag section write" data-ng-controller="Name">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
-                    <button class="edit-button" type="button">edit</button>
+                    <!--<button class="edit-button" type="button">edit</button>-->
                     <h2 class="section-title">Name</h2>
                 </div>
                 <div class="section-body">
@@ -69,7 +69,6 @@
                         <h1 id="character-name-display">{{charName}}</h1>
                     </div>
                     <div class="write">
-                        
                         Name: <input type="text" id="character-name-edit"  data-ng-model="charName"/> 
                     </div>
                 </div>
@@ -78,7 +77,7 @@
             <div id="description-section" draggable="true" class="drag section write" data-ng-controller="Description">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
-                    <button class="edit-button" type="button">edit</button>
+                    <!--<button class="edit-button" type="button">edit</button>-->
                     <h2 class="section-title">Description</h2>
                 </div>
                 <div class="section-body fixed-content">
@@ -179,7 +178,7 @@
                 </div>
             </div>
             <!-- cards -->
-            <div id="cards-section" draggable="true" class="drag section write">
+            <div id="cards-section" draggable="true" class="drag section write" data-ng-controller="Cards">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
@@ -188,8 +187,14 @@
                 <div class="section-body">
                     <p class="write tip">cards are ... TODO link to rules</p>
                     <div id="cards">
+                        <div class="card" data-ng-repeat="card in cards" data-ng-class="{write : !card.active}">
+                            <span class="counter-name write">Active:</span>
+                            <input class="check write" type="checkbox"  data-ng-model="card.active">
+                            <button class="write" type="button" data-ng-click="removeCard(card)">delete</button>
+                            <textarea class="card-text char-text" data-ng-model="card.words"></textarea>
+                        </div>
                     </div>
-                    <button id="add-card" class="write" type="button">add card</button>
+                    <button id="add-card" class="write" type="button" data-ng-click="addCard()">add card</button>
                 </div>
             </div>
             <div id="divider3" class="divider mock-section">

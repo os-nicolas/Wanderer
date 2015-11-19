@@ -2,7 +2,7 @@ function Name() {//$scope
 }
 
 g.modules.push(Name);
-g.WandererApp.controller("Name", function ($scope) {
+g.WandererApp.controller("Name", function ($scope) {//,$rootScope
     Name.model = $scope;
     Name.model.charName = ""
 });
@@ -14,7 +14,8 @@ g.WandererApp.controller("Name", function ($scope) {
 Name.setName = function (value) {
     Name.model.charName = value;
     Name.model.$apply();
-	//$('head title', window.parent.document).text(value);
+
+    
 	//$("#character-name-display").text(value);
 	//if ($("#character-name-edit").val() != value) {
 	//    $("#character-name-edit").val(value);
