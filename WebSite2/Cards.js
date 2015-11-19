@@ -6,8 +6,7 @@ g.WandererApp.controller("Cards", function ($scope) {
     Cards.model = $scope;
     Cards.model.cards = [];
     Cards.model.addCard = function () {
-        Cards.model.cards.push(new Card("", false));
-        Cards.model.$apply();
+        Cards.addCard(new Card("", false));
     }
     Cards.model.removeCard = function (card) {
         var at = Cards.model.cards.indexOf(card);
@@ -25,20 +24,20 @@ g.WandererApp.controller("Cards", function ($scope) {
 
 
 // Card, int
-Cards.setCards = function (value, index) {
-    Cards.model.cards[index] = value;
-    //value.bind($("#card-" + index), $("#card-active-" + index))
-}
+//Cards.setCards = function (value, index) {
+//    Cards.model.cards[index] = value;
+//    //value.bind($("#card-" + index), $("#card-active-" + index))
+//}
 
 //Card
 Cards.addCard = function (newCard) {
-    //var at = Cards.cards.length;
-    //$("#cards").append('<div class="card">'
-    //                       +'<span class="counter-name write">Active:</span>'
-    //                       + '<input class="check write" type="checkbox" id="card-active-' + at + '">'
-    //                       + '<textarea class="card-text char-text write" id="card-' + at + '"></textarea>'
-    //                    +'</div>');
-    //newCard.bind($("#card-" + at), $("#card-active-" + at))
+//    //var at = Cards.cards.length;
+//    //$("#cards").append('<div class="card">'
+//    //                       +'<span class="counter-name write">Active:</span>'
+//    //                       + '<input class="check write" type="checkbox" id="card-active-' + at + '">'
+//    //                       + '<textarea class="card-text char-text write" id="card-' + at + '"></textarea>'
+//    //                    +'</div>');
+//    //newCard.bind($("#card-" + at), $("#card-active-" + at))
     Cards.model.cards.push(newCard);
     Cards.model.$apply();
 

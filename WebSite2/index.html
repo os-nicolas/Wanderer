@@ -162,7 +162,7 @@
             </div>
 
             <!--items-->
-            <div id="items-section" draggable="true" class="drag section write">
+            <div id="items-section" draggable="true" class="drag section write" data-ng-controller="Items">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
@@ -171,11 +171,18 @@
                 <div class="section-body">
                     <p class="write tip">Skills are ... TODO link to rules</p>
                     <div class="write">
-                        Item:<input id="item-name" type="text" class="input-element" />
-                        <button id="add-item" type="button">Add item</button>
+                        Item:<input id="item-name" type="text" class="input-element" data-ng-model="toAdd" />
+                        <button id="add-item" type="button"  data-ng-click="addItem()">add item</button>
                     </div>
-                    <ul id="item-element-list" class="element-list"></ul>
-                </div>
+                    <ul id="item-element-list" class="element-list">
+                        <li class='item' data-ng-repeat="item in items">
+                            <input class='check play' type='checkbox' data-ng-model="items[item].ckecked">
+                            {{items[item].name}}
+                            <input type='number' class='counter item-bonus' data-ng-model="items[item].bonus">
+                            <button type='button' class='write' data-ng-click="removeItem(item)">delete</button>
+                        </li>
+                </ul>
+            </div>
             </div>
             <!-- cards -->
             <div id="cards-section" draggable="true" class="drag section write" data-ng-controller="Cards">
