@@ -29,7 +29,7 @@ SaveLoad.init = function () {
                 g.character.clear();
 
                 new Character(obj);
-                $('head title', window.parent.document).text(strip(filename));
+                //$('head title', window.parent.document).text(strip(filename));
             });
             $(this).val(""); //Reset the filepath so that the event will be called again.
         });
@@ -46,7 +46,7 @@ SaveLoad.init = function () {
 
             var filename = $(this).val();
             fs.writeFile(filename, JSON.stringify(g.character.toJSON()), function () { /*call back*/ });
-            $('head title', window.parent.document).text(strip(filename));
+            //$('head title', window.parent.document).text(strip(filename));
             $(this).val("");
         });
         fileDialog.trigger("click");

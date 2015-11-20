@@ -159,8 +159,8 @@ Node.makeNode = function (json) {
 Node.getRow = function (name, type) {
     return "<li id=skill-root-" + toId(name) + " class='skill'>"
                 + (type == "skill" ? "<input class='check play' type='checkbox' >" : "")
-                + name + (type == "skill" ? " : " : "")
-                + (type == "skill" ? "<span class='value'>0</span>" : "")
+                + name + (type == "skill" ? " <span class='write'>:</span> " : "")
+                + (type == "skill" ? "<span class='value write'>0</span>" : "")
                 + "<div class='write'>"
                     + "<select id='dropdown-" + toId(name) + "' >"
                         + "<option value='" + g.none + "'>" + g.none + "</option>"

@@ -218,12 +218,26 @@ li.item > div.write {
 li.skill, li.trait, li.item {
     padding: 5px 0px 5px 20px;
     margin: 0px;
-    background-color: #DADADA;
+    background: #DADADA;
+    /*this unfortunatly does not make the gradients fade in and out */
+    /*-webkit-transition: all 0.3s ease;*/
+}
+
+li.skill.highlight, li.trait.highlight, li.item.highlight {
+    background: -webkit-linear-gradient(left , #DADADA, #DADADA, #DADADA, #903)
 }
 
     li.skill:nth-child(odd), li.trait:nth-child(odd), li.item:nth-child(odd) {
-        background-color: #F8F5F6;
+        background: #F8F5F6;
     }
+
+    li.skill.highlight:nth-child(odd), li.trait.highlight:nth-child(odd), li.item.highlight:nth-child(odd) {
+        background: -webkit-linear-gradient(left , #F8F5F6, #F8F5F6, #F8F5F6, #903)
+    }
+
+
+
+
 
 li {
     margin: 10px 0px;

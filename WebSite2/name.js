@@ -15,7 +15,10 @@ Name.setName = function (value) {
     Name.model.charName = value;
     Name.model.$apply();
 
-    
+    //if ($("#character-name-edit").val() != value) {
+        //Name.setName($(this).val());
+    $('head title', window.parent.document).text(value);
+    //}
 	//$("#character-name-display").text(value);
 	//if ($("#character-name-edit").val() != value) {
 	//    $("#character-name-edit").val(value);
@@ -23,9 +26,12 @@ Name.setName = function (value) {
 }
 
 Name.init = function () {
-    //$("#character-name-edit").keyup(function () {
-	//	Name.setName($(this).val());
-	//});
+    $("#character-name-edit").keyup(function () {
+        //if ($("#character-name-edit").val() != "") {
+            //Name.setName($(this).val());
+            $('head title', window.parent.document).text($(this).val());
+        //}
+	});
 }
 
 Name.getBonus = function () {

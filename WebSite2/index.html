@@ -40,7 +40,8 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,300italic,400italic,700,700italic"
           rel="stylesheet" type="text/css">
-    <title data-ng-controller="Name">{{charName}}</title>
+    <title>Wanderer</title>
+    <!--<title data-ng-controller="Name">{{charName}}</title> still not sure why this does not work -->
 </head>
 <body>
     <div id="all">
@@ -175,11 +176,11 @@
                         <button id="add-item" type="button"  data-ng-click="addItem()">add item</button>
                     </div>
                     <ul id="item-element-list" class="element-list">
-                        <li class='item' data-ng-repeat="item in items">
-                            <input class='check play' type='checkbox' data-ng-model="items[item].ckecked">
-                            {{items[item].name}}
-                            <input type='number' class='counter item-bonus' data-ng-model="items[item].bonus">
-                            <button type='button' class='write' data-ng-click="removeItem(item)">delete</button>
+                        <li class='item' data-ng-repeat="item in items"  data-ng-class="{highlight : item.checked}">
+                            <input class='check play' type='checkbox' data-ng-model="item.checked" data-ng-click="updateBonus()">
+                             {{item.name}}
+                            <input type='number' class='counter item-bonus write' data-ng-model="item.bonus" >
+                            <button type='button' class='write' data-ng-click="removeItem(item.name)">delete</button>
                         </li>
                 </ul>
             </div>
