@@ -20,7 +20,7 @@ g.updateMode = function (write) {
 
 g.none = "-";
 g.character = new Character();
-g.WandererApp = angular.module('WandererApp', []);
+g.WandererApp = angular.module('WandererApp', ['ngAnimate']);
 g.modules = [];
 
 g.updateBonus = function () {

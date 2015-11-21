@@ -5,7 +5,9 @@
     <meta charset="utf-8" />
     <!--external dependencies-->
     <script src="jquery/jquery-2.1.3.min.js"></script>
-    <script src="angularjs/angular.min.js"></script>
+    <!--<script src="angularjs/angular.min.js"></script>-->
+    <script src="http://code.angularjs.org/1.2.2/angular.js"></script>
+    <script src="http://code.angularjs.org/1.2.2/angular-animate.min.js"></script>
     <!--core-->
     <script src="roll.js"></script>
     <script src="Color.js"></script>
@@ -34,7 +36,8 @@
     <!--cards-->
     <script src="card.js"></script>
     <script src="cards.js"></script>
-
+    <!--npcs-->
+    <script src="npcs.js"></script>
 
     <!--styles-->
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -274,10 +277,47 @@
                     </form>
                 </div>
             </div>
+
+            <!--NPCs-->
+            <div id="npcs-section" draggable="true" class="drag section" data-ng-controller="NPC">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <!--<button class="edit-button" type="button">edit</button>-->
+                    <h2 class="section-title">DM:NPCs</h2>
+                </div>
+                <div class="section-body fixed-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Speed</th>
+                                <th>Attack</th>
+                                <th>Defense</th>
+                                <th>Sum</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="npc in npcs">
+                                <td><input type="text" data-ng-model="npc.name" /></td>
+                                <td><input type="number" data-ng-model="npc.speed"></td>
+                                <td><input type="number" data-ng-model="npc.attack"></td>
+                                <td><input type="number" data-ng-model="npc.defense"></td>
+                                <td>{{npc.speed + npc.attack + npc.defense}}</td>
+                                <td><button type="button" data-ng-click="removeNPC(npc)">delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" data-ng-click="addNPC()">add</button>
+                    <button type="button" data-ng-click="randomize()">randomize</button>
+                </div>
+            </div>
+
             <div id="divider4" class="divider mock-section">
                 <h2 class="mock-section-title"> test</h2>
                 <!--<h1>Misc</h1>-->
             </div>
+
         </div>
     </div>
 </body>
