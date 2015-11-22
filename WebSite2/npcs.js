@@ -30,7 +30,7 @@ g.WandererApp.controller("NPC", function ($scope) {//,$rootScope
 });
 
 NPC.getNumbers = function () {
-    var toAdd = 6;
+    var toAdd = 5;
     var options = ["speed", "attack", "defense"];
     var res = { speed: 0, attack: 0, defense: 0 };
     for (var i = 0; i < toAdd; i++) {
@@ -54,7 +54,10 @@ NPC.toJSON = function (out) {
 }
 
 NPC.fromJSON = function (input) {
-    NPC.model.npcs = out[NPC.JSONname];
+    if (input[NPC.JSONname] == undefined) {
+    } else {
+        NPC.model.npcs = input[NPC.JSONname];
+    }
 }
 
 NPC.clear = function () {
