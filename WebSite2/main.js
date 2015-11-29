@@ -76,11 +76,11 @@ $(document).ready(function () {
     //})
 
 
-    $("#roll2").click(Rolls.getRollFunction(2.5));
+    $("#roll-stable").click(Rolls.getRollFunction(1.5));
 
-    $("#roll5").click(Rolls.getRollFunction(5));
+    $("#roll-normal").click(Rolls.getRollFunction(3));
 
-    $("#roll10").click(Rolls.getRollFunction(10));
+    $("#roll-unstable").click(Rolls.getRollFunction(6));
 
     $(".drag").on('dragenter', dragenter);
 

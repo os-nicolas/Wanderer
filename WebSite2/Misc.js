@@ -1,4 +1,4 @@
-function Item(name, bonus) {
+function Misc(name, bonus) {
     this.name = name;
     this.checked = false;
     this.bonus = 1;
@@ -45,8 +45,8 @@ function Item(name, bonus) {
     }
 }
 
-Item.makeItem = function (json) {
-    return new Item(json["name"], json["bonus"]);
+Misc.makeMisc = function (json) {
+    return new Misc(json["name"], json["bonus"]);
 }
 
 //Item.getItemRow = function (name) {

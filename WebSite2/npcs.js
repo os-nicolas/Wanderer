@@ -30,7 +30,7 @@ g.WandererApp.controller("NPC", function ($scope) {//,$rootScope
 });
 
 NPC.getNumbers = function () {
-    var toAdd = 5;
+    var toAdd = 3;
     var options = ["speed", "attack", "defense"];
     var res = { speed: 0, attack: 0, defense: 0 };
     for (var i = 0; i < toAdd; i++) {

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html  >
+﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" data-ng-app="WandererApp">
 <head>
@@ -15,9 +15,11 @@
     <script src="SaveLoad.js"></script>
     <script src="main.js"></script>
     <!--modules-->
-    <!--items-->
+    <!--Misc-->
+    <script src="Miscs.js"></script>
+    <script src="Misc.js"></script>
+    <!--Misc-->
     <script src="items.js"></script>
-    <script src="Item.js"></script>
     <!--goals-->
     <script src="goal.js"></script>
     <script src="goals.js"></script>
@@ -37,10 +39,11 @@
     <script src="card.js"></script>
     <script src="cards.js"></script>
     <!--npcs-->
-    <script src="npcs.js"></script>
+    <!--<script src="npcs.js"></script>-->
 
     <!--styles-->
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="newStyle.css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,300italic,400italic,700,700italic"
           rel="stylesheet" type="text/css">
     <title>Wanderer</title>
@@ -68,12 +71,12 @@
                     <!--<button class="edit-button" type="button">edit</button>-->
                     <h2 class="section-title">Name</h2>
                 </div>
-                <div class="section-body">
+                <div class="section-body pad-me">
                     <div class="play">
                         <h1 id="character-name-display">{{charName}}</h1>
                     </div>
                     <div class="write">
-                        Name: <input type="text" id="character-name-edit"  data-ng-model="charName"/> 
+                        Name: <input type="text" id="character-name-edit" class="text-input" data-ng-model="charName" />
                     </div>
                 </div>
             </div>
@@ -84,12 +87,12 @@
                     <!--<button class="edit-button" type="button">edit</button>-->
                     <h2 class="section-title">Description</h2>
                 </div>
-                <div class="section-body fixed-content">
+                <div class="section-body fixed-content pad-me">
                     <div class="play">
                         <div id="description-display"><p>{{description}}</p></div>
                     </div>
                     <div class="write">
-                        <textarea id="description-edit" class="char-text"  data-ng-model="description"></textarea>
+                        <textarea id="description-edit" class="char-text" data-ng-model="description"></textarea>
                     </div>
                 </div>
             </div>
@@ -119,19 +122,19 @@
                         <ol>
                             <li>
                                 <textarea id="goal-edit-1" class="goal-edit char-text"></textarea>
-                                effort:<input id="goal-effort-1" type="number" class="counter" value="0">
+                                effort:<input id="goal-effort-1" type="number" class="counter text-input" value="0">
                                 <button id="goal-passed-1" type="button">passed</button>
                                 <button id="goal-failed-1" type="button">failed</button>
                             </li>
                             <li>
                                 <textarea id="goal-edit-2" class="goal-edit char-text"></textarea>
-                                effort:<input id="goal-effort-2" type="number" class="counter" value="0">
+                                effort:<input id="goal-effort-2" type="number" class="counter text-input" value="0">
                                 <button id="goal-passed-2" type="button">passed</button>
                                 <button id="goal-failed-2" type="button">failed</button>
                             </li>
                             <li>
                                 <textarea id="goal-edit-3" class="goal-edit char-text"></textarea>
-                                effort:<input id="goal-effort-3" type="number" class="counter" value="0">
+                                effort:<input id="goal-effort-3" type="number" class="counter text-input" value="0">
                                 <button id="goal-passed-3" type="button">passed</button>
                                 <button id="goal-failed-3" type="button">failed</button>
                             </li>
@@ -153,8 +156,8 @@
                 </div>
                 <div class="section-body">
                     <p class="write tip">Skills are ... TODO link to rules</p>
-                    <div class="write">
-                        Skill:<input id="skill-name" type="text" class="input-element" />
+                    <div class="write pad-me">
+                        Skill:<input id="skill-name" type="text" class="input-element text-input" />
                         <button id="add-skill" type="button">Add skill</button>
                     </div>
                     <ul id="skill-element-list" class="element-list"></ul>
@@ -165,29 +168,53 @@
                 <!--<h1>Character under the Rules</h1>-->
             </div>
 
-            <!--items-->
-            <div id="items-section" draggable="true" class="drag section write" data-ng-controller="Items">
+            <!--Misc bonuses-->
+            <div id="misc-section" draggable="true" class="drag section write" data-ng-controller="Misc">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
-                    <h2 class="section-title">Items and Misc Bonuses:</h2>
+                    <h2 class="section-title">Misc Bonuses:</h2>
                 </div>
                 <div class="section-body">
                     <p class="write tip">Skills are ... TODO link to rules</p>
-                    <div class="write">
-                        Item:<input id="item-name" type="text" class="input-element" data-ng-model="toAdd" />
-                        <button id="add-item" type="button"  data-ng-click="addItem()">add item</button>
+                    <div class="write pad-me">
+                        Bonus:<input id="misc-name" type="text" class="input-element text-input" data-ng-model="toAdd" />
+                        <button id="add-misc" type="button" data-ng-click="addMisc()">add bonus</button>
+                    </div>
+                    <ul id="misc-element-list" class="element-list">
+                        <li class='misc' data-ng-repeat="misc in miscs" data-ng-class="{highlight : misc.checked}">
+                            <input class='check play' type='checkbox' data-ng-model="misc.checked" data-ng-change="updateBonus()">
+                            {{misc.name}}
+                            <input type='number' class='counter misc-bonus write text-input' data-ng-model="misc.bonus">
+                            <button type='button' class='write' data-ng-click="removeMisc(misc.name)">delete</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--Items-->
+            <div id="items-section" draggable="true" class="drag section write" data-ng-controller="Item">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <button class="edit-button" type="button">edit</button>
+                    <h2 class="section-title">Items:</h2>
+                </div>
+                <div class="section-body">
+                    <p class="write tip">Skills are ... TODO link to rules</p>
+                    <div class="write pad-me">
+                        Item: <input id="item-name" type="text" class="text-input input-element" data-ng-model="toAdd" />
+                        <button id="add-item" type="button" data-ng-click="addItem()">add item</button>
                     </div>
                     <ul id="item-element-list" class="element-list">
-                        <li class='item' data-ng-repeat="item in items"  data-ng-class="{highlight : item.checked}">
-                            <input class='check play' type='checkbox' data-ng-model="item.checked" data-ng-click="updateBonus()">
-                             {{item.name}}
-                            <input type='number' class='counter item-bonus write' data-ng-model="item.bonus" >
+                        <li class='item' data-ng-repeat="item in items">
+                            {{item.name}}<span class="play">: {{item.number}}</span> 
+                            <input type='text' class='counter item-number write' data-ng-model="item.number">
                             <button type='button' class='write' data-ng-click="removeItem(item.name)">delete</button>
                         </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
-            </div>
+
             <!-- cards -->
             <div id="cards-section" draggable="true" class="drag section write" data-ng-controller="Cards">
                 <div class="section-header">
@@ -195,12 +222,12 @@
                     <button class="edit-button" type="button">edit</button>
                     <h2 class="section-title">Cards</h2>
                 </div>
-                <div class="section-body">
+                <div class="section-body pad-me">
                     <p class="write tip">cards are ... TODO link to rules</p>
                     <div id="cards">
                         <div class="card" data-ng-repeat="card in cards" data-ng-class="{write : !card.active}">
                             <span class="counter-name write">Active:</span>
-                            <input class="check write" type="checkbox"  data-ng-model="card.active">
+                            <input class="check write" type="checkbox" data-ng-model="card.active">
                             <button class="write" type="button" data-ng-click="removeCard(card)">delete</button>
                             <textarea class="card-text char-text" data-ng-model="card.words"></textarea>
                         </div>
@@ -219,14 +246,14 @@
                     <!--<button class="edit-button" type="button">edit</button>-->
                     <h2 class="section-title">Roll</h2>
                 </div>
-                <div class="section-body fixed-content">
+                <div class="section-body fixed-content pad-me">
                     <p class="play tip">Skills are ... TODO link to rules</p>
                     Misc:<input type="number" class="counter" id="misc" value="0">
                     current total bonus: <span id="totalBonus">0</span>
                     <br />
-                    <button id="roll2" class="roll-buton" type="button">roll-2.5!</button>
-                    <button id="roll5" class="roll-buton" type="button">roll-5!</button>
-                    <button id="roll10" class="roll-buton" type="button">roll-10!</button>
+                    <button id="roll-stable" class="roll-buton" type="button">roll-1.5!</button>
+                    <button id="roll-normal" class="roll-buton" type="button">roll-3!</button>
+                    <button id="roll-unstable" class="roll-buton" type="button">roll-6!</button>
                     <div class="roll-results">
                         <div id="roll-0" class="roll-result"></div>
                         <div id="roll-1" class="roll-result"></div>
@@ -242,24 +269,24 @@
                     <!--<button class="edit-button" type="button">edit</button>-->
                     <h2 class="section-title">Counters</h2>
                 </div>
-                <div class="section-body fixed-content">
+                <div class="section-body fixed-content pad-me">
                     <p class="play tip">Skills are ... TODO link to rules</p>
                     <form>
                         <span class="counter-name">HP:</span>
-                        <input type="number" class="counter" value="3">
+                        <input type="number" class="counter text-input" value="3">
                         <br />
                         <span class="counter-name">Facts:</span>
-                        <input type="number" class="counter" value="3">
+                        <input type="number" class="counter text-input" value="3">
                         <br />
                         <br />
                         <span class="counter-name">Speed:</span>
-                        <input type="number" class="counter" value="1">
+                        <input type="number" class="counter text-input" value="1">
                         <br />
                         <span class="counter-name">Offense:</span>
-                        <input type="number" class="counter" value="2">
+                        <input type="number" class="counter text-input" value="1">
                         <br />
                         <span class="counter-name"> Defense:</span>
-                        <input type="number" class="counter" value="2">
+                        <input type="number" class="counter text-input" value="1">
                     </form>
                 </div>
             </div>
@@ -270,7 +297,7 @@
                     <!--<button class="edit-button" type="button">edit</button>-->
                     <h2 class="section-title">Notes</h2>
                 </div>
-                <div class="section-body fixed-content">
+                <div class="section-body fixed-content pad-me">
                     <p class="play tip">Skills are ... TODO link to rules</p>
                     <form>
                         <textarea id="notes" class="char-text" data-ng-model="notes"></textarea>
@@ -279,30 +306,30 @@
             </div>
 
             <!--NPCs-->
-            <div id="npcs-section" draggable="true" class="drag section" data-ng-controller="NPC">
+            <!--<div id="npcs-section" draggable="true" class="drag section" data-ng-controller="NPC">
                 <div class="section-header">
-                    <button class="hide-button" type="button">-</button>
+                    <button class="hide-button" type="button">-</button>-->
                     <!--<button class="edit-button" type="button">edit</button>-->
-                    <h2 class="section-title">DM:NPCs</h2>
+                    <!--<h2 class="section-title">DM:NPCs</h2>
                 </div>
-                <div class="section-body fixed-content">
+                <div class="section-body fixed-content pad-me">
                     <table>
                         <thead>
-                            <tr>
-                                <th>Name</th>
+                            <tr>-->
+                                <!--<th>Name</th>
                                 <th>Speed</th>
                                 <th>Attack</th>
                                 <th>Defense</th>
                                 <th>Sum</th>
-                                <th>Delete</th>
-                            </tr>
+                                <th>Delete</th>-->
+                            <!--</tr>
                         </thead>
                         <tbody>
                             <tr data-ng-repeat="npc in npcs">
-                                <td><input type="text" data-ng-model="npc.name" /></td>
-                                <td><input type="number" data-ng-model="npc.speed"></td>
-                                <td><input type="number" data-ng-model="npc.attack"></td>
-                                <td><input type="number" data-ng-model="npc.defense"></td>
+                                <td><input type="text" class="text-input" data-ng-model="npc.name" /></td>
+                                <td><input type="number" class="text-input" data-ng-model="npc.speed"></td>
+                                <td><input type="number" class="text-input" data-ng-model="npc.attack"></td>
+                                <td><input type="number" class="text-input" data-ng-model="npc.defense"></td>
                                 <td>{{npc.speed + npc.attack + npc.defense}}</td>
                                 <td><button type="button" data-ng-click="removeNPC(npc)">delete</button></td>
                             </tr>
@@ -311,7 +338,7 @@
                     <button type="button" data-ng-click="addNPC()">add</button>
                     <button type="button" data-ng-click="randomize()">randomize</button>
                 </div>
-            </div>
+            </div>-->
 
             <div id="divider4" class="divider mock-section">
                 <h2 class="mock-section-title"> test</h2>
