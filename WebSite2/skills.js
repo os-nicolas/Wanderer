@@ -2,6 +2,15 @@ function Skills() { }
 
 g.modules.push(Skills);
 
+g.WandererApp.controller("Skills", function ($scope) {
+    Skills.model = $scope;
+    Skills.model.skills = []
+    Skills.model.toAdd = "";
+    Skills.model.addSkill = function () { }
+    Skills.model.addConnection = function (skill) { }
+    Skills.model.deleteSkill = function (skill) { }
+});
+
 Skills.netWork = new NetWork();
 
 function addElement(type) {

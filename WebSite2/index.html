@@ -148,7 +148,7 @@
                 <!--<h1>Character under the Fiction</h1>-->
             </div>
             <!--traits, skills-->
-            <div id="skills-section" draggable="true" class="drag section write">
+            <!--<div id="skills-section" draggable="true" class="drag section write">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
@@ -164,9 +164,9 @@
                 </div>
             </div>
             <div id="divider2" class="divider mock-section">
-                <h2 class="mock-section-title"> test</h2>
+                <h2 class="mock-section-title"> test</h2>-->
                 <!--<h1>Character under the Rules</h1>-->
-            </div>
+            <!--</div>-->
 
             <!--Misc bonuses-->
             <div id="misc-section" draggable="true" class="drag section write" data-ng-controller="Misc">
@@ -187,6 +187,38 @@
                             {{misc.name}}
                             <input type='number' class='counter misc-bonus write text-input' data-ng-model="misc.bonus">
                             <button type='button' class='write' data-ng-click="removeMisc(misc.name)">delete</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--Skills-->
+            <div id="skills-section" draggable="true" class="drag section write" data-ng-controller="Skills">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <button class="edit-button" type="button">edit</button>
+                    <h2 class="section-title">Items:</h2>
+                </div>
+                <div class="section-body">
+                    <p class="write tip">Skills are ... TODO link to rules</p>
+                    <div class="write pad-me">
+                        Skill: <input id="item-name" type="text" class="text-input input-element" data-ng-model="toAdd" />
+                        <button id="add-item" type="button" data-ng-click="addSkill()">add item</button>
+                    </div>
+                    <ul id="skill-element-list" class="element-list">
+                        <li class='skill' data-ng-repeat="skill in skills">
+                            <input class='check play' type='checkbox'>
+                            skill.name  <span class='write'>:</span><span class='value write'>0</span>
+                        <div class='write'>
+                            <select data-ng-model="skill.toAdd">
+                                <option data-ng-repeat="innerSkill in skills" value={{innerSkill}}>{{innerSkill}}</option>
+                            </select>
+                            <button data-ng-click="addConnection(skill)" type='button'>connect</button>"
+                            <button data-ng-click="deleteSkill(skill)" type='button'>delete</button>"
+                            <ul>
+                                <li data-ng-repeat="isHelped in skill.helps">{{isHelped}}</li>
+                            </ul>
+                        </div>
                         </li>
                     </ul>
                 </div>
@@ -239,6 +271,8 @@
                 <h2 class="mock-section-title"> test</h2>
                 <!--<h1>Misc</h1>-->
             </div>
+
+
             <!--roll-->
             <div id="roll-section" draggable="true" class="drag section play">
                 <div class="section-header">
