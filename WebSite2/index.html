@@ -208,7 +208,8 @@
                     <ul id="skill-element-list" class="element-list">
                         <li class='skill' data-ng-repeat="skill in skills" data-ng-class="{highlight : skill.active}">
                             <input class='check play' type='checkbox' data-ng-model="skill.active" data-ng-change="updateBonus()">
-                            {{skill.name}}  <span class='write'>:</span><span class='value write'>{{getBonus(skill)}}</span>
+                            {{skill.name}}  
+                            <!--<span class='write'>:</span><span class='value write'>{{getBonus(skill)}}</span>-->
                         <div class='write'>
                             <select data-ng-model="skill.toAdd">
                                 <option data-ng-repeat="innerSkill in skills | filter: showOption(skill)" value={{innerSkill.name}}>{{innerSkill.name}}</option>
