@@ -197,21 +197,21 @@
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <button class="edit-button" type="button">edit</button>
-                    <h2 class="section-title">Items:</h2>
+                    <h2 class="section-title">Skills:</h2>
                 </div>
                 <div class="section-body">
                     <p class="write tip">Skills are ... TODO link to rules</p>
                     <div class="write pad-me">
                         Skill: <input id="item-name" type="text" class="text-input input-element" data-ng-model="toAdd" />
-                        <button id="add-item" type="button" data-ng-click="addSkill()">add item</button>
+                        <button id="add-item" type="button" data-ng-click="addSkill()">add skill</button>
                     </div>
                     <ul id="skill-element-list" class="element-list">
-                        <li class='skill' data-ng-repeat="skill in skills">
-                            <input class='check play' type='checkbox'>
-                            skill.name  <span class='write'>:</span><span class='value write'>0</span>
+                        <li class='skill' data-ng-repeat="skill in skills" data-ng-class="{highlight : skill.active}">
+                            <input class='check play' type='checkbox' data-ng-model="skill.active" data-ng-change="updateBonus()">
+                            {{skill.name}}  <span class='write'>:</span><span class='value write'>{{getBonus(skill)}}</span>
                         <div class='write'>
                             <select data-ng-model="skill.toAdd">
-                                <option data-ng-repeat="innerSkill in skills" value={{innerSkill}}>{{innerSkill}}</option>
+                                <option data-ng-repeat="innerSkill in skills | filter: showOption(skill)" value={{innerSkill.name}}>{{innerSkill.name}}</option>
                             </select>
                             <button data-ng-click="addConnection(skill)" type='button'>connect</button>"
                             <button data-ng-click="deleteSkill(skill)" type='button'>delete</button>"
