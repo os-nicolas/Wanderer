@@ -26,6 +26,10 @@ body {
     user-select: none;
 }
 
+
+.red {
+    color:red;
+}
 /*
     this next section we do stuff with the columns
 */

@@ -201,23 +201,31 @@
                 </div>
                 <div class="section-body">
                     <p class="write tip">Skills are ... TODO link to rules</p>
-                    <div class="write pad-me">
-                        Skill: <input id="item-name" type="text" class="text-input input-element" data-ng-model="toAdd" />
-                        <button id="add-item" type="button" data-ng-click="addSkill()">add skill</button>
+                    <div class="pad-me">
+                        <div class="write">
+                            Skill: <input type="text" class="text-input input-element" data-ng-model="toAdd" />
+                            <button type="button" data-ng-click="addSkill()">add skill</button>
+                        </div>
+                        <div class="play">
+                            <button type="button" data-ng-click="looseSkill()">loose a skill</button>
+                        </div>
                     </div>
                     <ul id="skill-element-list" class="element-list">
                         <li class='skill' data-ng-repeat="skill in skills" data-ng-class="{highlight : skill.active}">
                             <input class='check play' type='checkbox' data-ng-model="skill.active" data-ng-change="updateBonus()">
-                            {{skill.name}}  
+                            <spqn data-ng-class="{red : skill.bonus <0}">{{skill.name}}</spqn>  
+                            <button class='play' type='button' data-ng-click="flipSkill(skill)">flip</button>
                             <!--<span class='write'>:</span><span class='value write'>{{getBonus(skill)}}</span>-->
                         <div class='write'>
                             <select data-ng-model="skill.toAdd">
                                 <option data-ng-repeat="innerSkill in skills | filter: showOption(skill)" value={{innerSkill.name}}>{{innerSkill.name}}</option>
                             </select>
-                            <button data-ng-click="addConnection(skill)" type='button'>connect</button>"
-                            <button data-ng-click="deleteSkill(skill)" type='button'>delete</button>"
+                            <button data-ng-click="addConnection(skill)" type='button'>connect</button>
+                            <button data-ng-click="deleteSkill(skill)" type='button'>delete</button>
                             <ul>
-                                <li data-ng-repeat="isHelped in skill.helps">{{isHelped}}</li>
+                                <li data-ng-repeat="isHelped in skill.helps">{{isHelped}} 
+                                    <button data-ng-click="deleteConnection(skill,isHelped)" type='button'>delete</button>
+                                </li>
                             </ul>
                         </div>
                         </li>

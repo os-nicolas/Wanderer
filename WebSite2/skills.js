@@ -27,10 +27,17 @@ g.WandererApp.controller("Skills", function ($scope) {
         }
     }
     Skills.model.deleteSkill = function (skill) {
-        var index = Skills.model.indexOf(skill);
+        var index = Skills.model.skills.indexOf(skill);
         if (index != -1) {
-            index.splice(index, 1);
+            Skills.model.skills.splice(index, 1);
         }
+        Skills.model.skills.forEach(function (innerSkill) {
+            var index = innerSkill.helps.indexOf(skill.name);
+            if (index != -1) {
+                innerSkill.helps.splice(index, 1);
+            }
+        });
+
     }
     Skills.model.showOption = function (skill) {
         return function (innerSkill) {
@@ -39,7 +46,7 @@ g.WandererApp.controller("Skills", function ($scope) {
     }
     Skills.model.getBonus = function (skill) {
         var sum = skill.bonus;
-        var distance = 0;
+        var distance = 1;
         // list of nodes
         var blackList = [];
         // list of connections
@@ -67,15 +74,43 @@ g.WandererApp.controller("Skills", function ($scope) {
     Skills.model.updateBonus = function () {
         g.updateBonus()
     }
+    Skills.model.looseSkill = function () {
+        var list = Skills.getLoosibleSkills();
+        if (list.length > 0) {
+            list[Math.floor(Math.random() * list.length)].bonus *= -1;
+        }
+        g.updateBonus();
+    }
+    Skills.model.flipSkill = function (skill) {
+        skill.bonus *= -1;
+        g.updateBonus();
+    }
+
+    Skills.model.deleteConnection= function(skill,isHelped){
+        var index = skill.helps.indexOf(isHelped);
+        if (index != -1) {
+            skill.helps.splice(index, 1);
+        }
+        g.updateBonus();
+    }
 });
 
-
-Skills.levelLoss=function(distance) {
-    return 1 / Math.pow(2, distance - 1);
+Skills.getLoosibleSkills = function () {
+    var toRes = [];
+    Skills.model.skills.forEach(function (skill) {
+        if (skill.bonus > 0) {
+            toRes.push(skill)
+        }
+    });
+    return toRes;
 }
 
-Skills.scaleLoss = function(sum) {
-    return Math.pow(2 * sum + 1, .52) - (Math.pow(3, .52) - 1);
+Skills.levelLoss=function(distance) {
+    return 1.0 / Math.pow(2.0, distance - 1);
+}
+
+Skills.scaleLoss = function (sum) {
+    return (Math.pow(2 * Math.abs(sum) + 1, .5) - (Math.pow(3, .5) - 1))*Math.sign(sum);
 }
 
 Skills.getHelpers= function(skillName){
@@ -130,7 +165,7 @@ Skills.getBonus = function () {
         if (skill.active) {
             sum += Skills.model.getBonus(skill);
         }
-    })
+    });
 
 	//for (var skillName in Skills.netWork.allNodes) {
 	//	var skill = Skills.netWork.allNodes[skillName];
