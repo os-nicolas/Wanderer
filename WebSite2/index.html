@@ -74,7 +74,7 @@
                         <h1 id="character-name-display">{{charName}}</h1>
                     </div>
                     <div class="write">
-                        Name: <input type="text" id="character-name-edit" class="text-input" data-ng-model="charName" />
+                        <input type="text" placeholder="Name" id="character-name-edit" class="text-input" data-ng-model="charName" />
                     </div>
                 </div>
             </div>
@@ -204,7 +204,7 @@
                     <p class="write tip">Skills are ... TODO link to rules</p>
                     <div class="pad-me">
                         <div class="write">
-                            Skill: <input type="text" class="text-input input-element" data-ng-model="toAdd" />
+                            <input type="text" placeholder="Enter a skill" class="text-input input-element" data-ng-model="toAdd" />
                             <button type="button" data-ng-click="addSkill()">add skill</button>
                         </div>
                         <div class="play">
@@ -246,7 +246,7 @@
                 <div class="section-body">
                     <p class="write tip">Skills are ... TODO link to rules</p>
                     <div class="write pad-me">
-                        Item: <input id="item-name" type="text" class="text-input input-element" data-ng-model="toAdd" />
+                        <input placeholder="Enter an item" id="item-name" type="text" class="text-input input-element" data-ng-model="toAdd" />
                         <button id="add-item" type="button" data-ng-click="addItem()">add item</button>
                     </div>
                     <ul id="item-element-list" class="element-list">
