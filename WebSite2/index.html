@@ -40,14 +40,12 @@
     <script src="cards.js"></script>
     <!--npcs-->
     <!--<script src="npcs.js"></script>-->
-
     <!--styles-->
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="newStyle.css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,300italic,400italic,700,700italic"
           rel="stylesheet" type="text/css">
     <title>Wanderer</title>
-    <!--<title data-ng-controller="Name">{{charName}}</title> still not sure why this does not work -->
 </head>
 <body>
     <div id="all">
@@ -162,12 +160,11 @@
                     </div>
                     <ul id="skill-element-list" class="element-list"></ul>
                 </div>
-            </div>
+            </div>-->
             <div id="divider2" class="divider mock-section">
-                <h2 class="mock-section-title"> test</h2>-->
-                <!--<h1>Character under the Rules</h1>-->
-            <!--</div>-->
-
+                <h2 class="mock-section-title"> test</h2>
+            <!--<h1>Character under the Rules</h1>-->
+            </div>
             <!--Misc bonuses-->
             <div id="misc-section" draggable="true" class="drag section write" data-ng-controller="Misc">
                 <div class="section-header">
@@ -182,12 +179,16 @@
                         <button id="add-misc" type="button" data-ng-click="addMisc()">add bonus</button>
                     </div>
                     <ul id="misc-element-list" class="element-list">
+
                         <li class='misc' data-ng-repeat="misc in miscs" data-ng-class="{highlight : misc.checked}">
-                            <input class='check play' type='checkbox' data-ng-model="misc.checked" data-ng-change="updateBonus()">
-                            {{misc.name}}
+                            <label>
+                                <input class='check play' type='checkbox' data-ng-model="misc.checked" data-ng-change="updateBonus()">
+                                {{misc.name}}
+                            </label>
                             <input type='number' class='counter misc-bonus write text-input' data-ng-model="misc.bonus">
                             <button type='button' class='write' data-ng-click="removeMisc(misc.name)">delete</button>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -212,22 +213,24 @@
                     </div>
                     <ul id="skill-element-list" class="element-list">
                         <li class='skill' data-ng-repeat="skill in skills" data-ng-class="{highlight : skill.active}">
-                            <input class='check play' type='checkbox' data-ng-model="skill.active" data-ng-change="updateBonus()">
-                            <spqn data-ng-class="{red : skill.bonus <0}">{{skill.name}}</spqn>  
+                            <label>
+                                <input class='check play' type='checkbox' data-ng-model="skill.active" data-ng-change="updateBonus()">
+                                <spqn data-ng-class="{red : skill.bonus <0}">{{skill.name}}</spqn>
+                            </label>
                             <button class='play' type='button' data-ng-click="flipSkill(skill)">flip</button>
                             <!--<span class='write'>:</span><span class='value write'>{{getBonus(skill)}}</span>-->
-                        <div class='write'>
-                            <select data-ng-model="skill.toAdd">
-                                <option data-ng-repeat="innerSkill in skills | filter: showOption(skill)" value={{innerSkill.name}}>{{innerSkill.name}}</option>
-                            </select>
-                            <button data-ng-click="addConnection(skill)" type='button'>connect</button>
-                            <button data-ng-click="deleteSkill(skill)" type='button'>delete</button>
-                            <ul>
-                                <li data-ng-repeat="isHelped in skill.helps">{{isHelped}} 
-                                    <button data-ng-click="deleteConnection(skill,isHelped)" type='button'>delete</button>
-                                </li>
-                            </ul>
-                        </div>
+
+                                <select class='write dropdown' data-ng-model="skill.toAdd">
+                                    <option data-ng-repeat="innerSkill in skills | filter: showOption(skill)" value={{innerSkill.name}}>{{innerSkill.name}}</option>
+                                </select>
+                                <button  class='write' data-ng-click="addConnection(skill)" type='button'>connect</button>
+                                <button class='write' data-ng-click="deleteSkill(skill)" type='button'>delete</button>
+                                <ul class='write'>
+                                    <li data-ng-repeat="isHelped in skill.helps">
+                                        {{isHelped}}
+                                        <button data-ng-click="deleteConnection(skill,isHelped)" type='button'>delete</button>
+                                    </li>
+                                </ul>
                         </li>
                     </ul>
                 </div>
@@ -248,8 +251,8 @@
                     </div>
                     <ul id="item-element-list" class="element-list">
                         <li class='item' data-ng-repeat="item in items">
-                            {{item.name}}<span class="play">: {{item.number}}</span> 
-                            <input type='text' class='counter item-number write' data-ng-model="item.number">
+                            {{item.name}}<span class="play">: {{item.number}}</span>
+                            <input type='text' class='text-input item-number write' data-ng-model="item.number">
                             <button type='button' class='write' data-ng-click="removeItem(item.name)">delete</button>
                         </li>
                     </ul>
@@ -276,6 +279,7 @@
                     <button id="add-card" class="write" type="button" data-ng-click="addCard()">add card</button>
                 </div>
             </div>
+
             <div id="divider3" class="divider mock-section">
                 <h2 class="mock-section-title"> test</h2>
                 <!--<h1>Misc</h1>-->
@@ -352,20 +356,20 @@
             <!--<div id="npcs-section" draggable="true" class="drag section" data-ng-controller="NPC">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>-->
-                    <!--<button class="edit-button" type="button">edit</button>-->
-                    <!--<h2 class="section-title">DM:NPCs</h2>
-                </div>
-                <div class="section-body fixed-content pad-me">
-                    <table>
-                        <thead>
-                            <tr>-->
-                                <!--<th>Name</th>
-                                <th>Speed</th>
-                                <th>Attack</th>
-                                <th>Defense</th>
-                                <th>Sum</th>
-                                <th>Delete</th>-->
-                            <!--</tr>
+            <!--<button class="edit-button" type="button">edit</button>-->
+            <!--<h2 class="section-title">DM:NPCs</h2>
+            </div>
+            <div class="section-body fixed-content pad-me">
+                <table>
+                    <thead>
+                        <tr>-->
+            <!--<th>Name</th>
+            <th>Speed</th>
+            <th>Attack</th>
+            <th>Defense</th>
+            <th>Sum</th>
+            <th>Delete</th>-->
+            <!--</tr>
                         </thead>
                         <tbody>
                             <tr data-ng-repeat="npc in npcs">

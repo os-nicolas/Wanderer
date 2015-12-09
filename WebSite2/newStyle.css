@@ -1,10 +1,28 @@
-/*.text-input {
+.text-input, .counter, .dropdown{
     padding: 2px 2px 2px 2px;
     border-width: 0px 0px 1px 0px;
     background-color: transparent;
     border-radius: 0px;
+    font-size: 18px;
+    font-family: 'roboto';
+    font-weight: 300;
+}
+
+.char-text {
+    padding: 4px 4px 4px 4px;
+    border-width: 0px 0px 0px 1px;
+    background-color: transparent;
+    border-radius: 0px;
+    font-size: 18px;
+    font-family: 'roboto';
+    font-weight: 300;
+}
+
+/*ul.element-list {
+    margin: 5px;
 }*/
 
+/*background-color: rgba(255, 255, 255, .4);*/
 
 /*body {
     background:#333;

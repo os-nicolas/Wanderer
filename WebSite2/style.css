@@ -36,12 +36,10 @@ body {
 
 #content {
     -webkit-column-width: 450px;
-    /*-webkit-column-fill: balance;*/
     padding-left: 5px;
     padding-right: 5px;
     margin-left: 5%;
     margin-right: 5%;
-    /*-webkit-column-count: 3;*/
 }
 
 .column {
@@ -187,6 +185,10 @@ select {
     margin-top: 50px;
     margin-bottom: 20px;
     -webkit-transition: all 0.3s ease;
+    /*box-shadow: 0px 0px 10px #fff;
+    border: 1px solid #333;
+    margin-left:5px;
+    margin-right:5px;*/
     /*	border: 2px solid #222;*/
 }
 
@@ -195,7 +197,6 @@ select {
         height: 0;
         padding: 0;
         overflow: hidden;
-        /*display: none;*/
     }
 
     .section.hidden .edit-button {
