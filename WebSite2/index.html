@@ -16,9 +16,9 @@
     <script src="main.js"></script>
     <!--modules-->
     <!--Misc-->
-    <script src="Miscs.js"></script>
-    <script src="Misc.js"></script>
-    <!--Misc-->
+    <!--<script src="Miscs.js"></script>
+    <script src="Misc.js"></script>-->
+    <!--Items-->
     <script src="items.js"></script>
     <!--goals-->
     <script src="goal.js"></script>
@@ -40,6 +40,10 @@
     <script src="cards.js"></script>
     <!--npcs-->
     <!--<script src="npcs.js"></script>-->
+    <!--standardBonuses-->
+    <script src="standardBonuses.js"></script>
+
+
     <!--styles-->
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="newStyle.css">
@@ -50,7 +54,10 @@
 <body>
     <div id="all">
 
-        <div id="">
+        
+
+        <div id="page-header" class="pad-me">
+            
             <!--<button id="mode" type="button">Done Editing</button>-->
             <!--load-->
             <button id="load" type="button">Load</button>
@@ -74,7 +81,7 @@
                         <h1 id="character-name-display">{{charName}}</h1>
                     </div>
                     <div class="write">
-                        <input type="text" placeholder="Name" id="character-name-edit" class="text-input" data-ng-model="charName" />
+                        <input type="text" placeholder="Enter your name" id="character-name-edit" class="text-input" data-ng-model="charName" />
                     </div>
                 </div>
             </div>
@@ -90,7 +97,7 @@
                         <div id="description-display"><p>{{description}}</p></div>
                     </div>
                     <div class="write">
-                        <textarea id="description-edit" class="char-text" data-ng-model="description"></textarea>
+                        <textarea id="description-edit" placeholder="Describe yourself" class="char-text" data-ng-model="description"></textarea>
                     </div>
                 </div>
             </div>
@@ -145,6 +152,22 @@
                 <h2 class="mock-section-title"> test</h2>
                 <!--<h1>Character under the Fiction</h1>-->
             </div>
+
+            <!--notes-->
+            <div id="notes-section" draggable="true" class="drag section play" data-ng-controller="Notes">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <!--<button class="edit-button" type="button">edit</button>-->
+                    <h2 class="section-title">Notes</h2>
+                </div>
+                <div class="section-body fixed-content pad-me">
+                    <p class="play tip">Skills are ... TODO link to rules</p>
+                    <form>
+                        <textarea id="notes"  placeholder="Keep notes" class="char-text" data-ng-model="notes"></textarea>
+                    </form>
+                </div>
+            </div>
+
             <!--traits, skills-->
             <!--<div id="skills-section" draggable="true" class="drag section write">
                 <div class="section-header">
@@ -163,7 +186,7 @@
             </div>-->
             <div id="divider2" class="divider mock-section">
                 <h2 class="mock-section-title"> test</h2>
-            <!--<h1>Character under the Rules</h1>-->
+                <!--<h1>Character under the Rules</h1>-->
             </div>
             <!--Misc bonuses-->
             <!--<div id="misc-section" draggable="true" class="drag section write" data-ng-controller="Misc">
@@ -193,6 +216,8 @@
                 </div>
             </div>-->
 
+
+
             <!--Skills-->
             <div id="skills-section" draggable="true" class="drag section write" data-ng-controller="Skills">
                 <div class="section-header">
@@ -220,17 +245,17 @@
                             <button class='play' type='button' data-ng-click="flipSkill(skill)">flip</button>
                             <!--<span class='write'>:</span><span class='value write'>{{getBonus(skill)}}</span>-->
 
-                                <select class='write dropdown' data-ng-model="skill.toAdd">
-                                    <option data-ng-repeat="innerSkill in skills | filter: showOption(skill)" value={{innerSkill.name}}>{{innerSkill.name}}</option>
-                                </select>
-                                <button  class='write' data-ng-click="addConnection(skill)" type='button'>connect</button>
-                                <button class='write' data-ng-click="deleteSkill(skill)" type='button'>delete</button>
-                                <ul class='write'>
-                                    <li data-ng-repeat="isHelped in skill.helps">
-                                        {{isHelped}}
-                                        <button data-ng-click="deleteConnection(skill,isHelped)" type='button'>delete</button>
-                                    </li>
-                                </ul>
+                            <select class='write dropdown' data-ng-model="skill.toAdd">
+                                <option data-ng-repeat="innerSkill in skills | filter: showOption(skill)" value={{innerSkill.name}}>{{innerSkill.name}}</option>
+                            </select>
+                            <button class='write' data-ng-click="addConnection(skill)" type='button'>connect</button>
+                            <button class='write' data-ng-click="deleteSkill(skill)" type='button'>delete</button>
+                            <ul class='write'>
+                                <li data-ng-repeat="isHelped in skill.helps">
+                                    {{isHelped}}
+                                    <button data-ng-click="deleteConnection(skill,isHelped)" type='button'>delete</button>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -285,6 +310,34 @@
                 <!--<h1>Misc</h1>-->
             </div>
 
+            <!--Standard bonuses-->
+            <div id="standard-bonuses-section" draggable="true" class="drag section play" data-ng-controller="standardBonuses">
+                <div class="section-header">
+                    <button class="hide-button" type="button">-</button>
+                    <button class="edit-button" type="button">edit</button>
+                    <h2 class="section-title">Accepted Bonuses:</h2>
+                </div>
+                <div class="section-body">
+                    <p class="write tip">Skills are ... TODO link to rules</p>
+                    <div class="write pad-me">
+                        <input placeholder="bonus" id="misc-name" type="text" class="input-element text-input" data-ng-model="toAdd" />
+                        <button type="button" data-ng-click="addBonus()">add bonus</button>
+                    </div>
+                    <ul id="misc-element-list" class="element-list">
+
+                        <li class='misc' data-ng-repeat="bonus in bonuses" data-ng-class="{highlight : bonus.checked}">
+                            <label>
+                                <input class='check play' type='checkbox' data-ng-model="bonus.checked" data-ng-change="updateBonus()">
+                                {{bonus.name}}
+                            </label>
+                            <input type='number' class='counter write' data-ng-model="bonus.number">
+                            <button type='button' class='write' data-ng-click="removeBonus(bonus)">delete</button>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
 
             <!--roll-->
             <div id="roll-section" draggable="true" class="drag section play">
@@ -309,48 +362,50 @@
                 </div>
             </div>
 
-            <!--hp and facts-->
-            <div id="counters-section" draggable="true" class="drag section play">
+            <!--hp -->
+            <div id="hp-section" draggable="true" class="drag section play">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <!--<button class="edit-button" type="button">edit</button>-->
-                    <h2 class="section-title">Counters</h2>
+                    <h2 class="section-title">Hit Points</h2>
                 </div>
                 <div class="section-body fixed-content pad-me">
                     <p class="play tip">Skills are ... TODO link to rules</p>
                     <form>
                         <span class="counter-name">HP:</span>
-                        <input type="number" class="counter text-input" value="3">
-                        <br />
+                        <input type="number" class="counter" value="3">
+                        <!--<br />
                         <span class="counter-name">Facts:</span>
-                        <input type="number" class="counter text-input" value="3">
-                        <br />
-                        <br />
-                        <span class="counter-name">Speed:</span>
-                        <input type="number" class="counter text-input" value="1">
-                        <br />
-                        <span class="counter-name">Offense:</span>
-                        <input type="number" class="counter text-input" value="1">
-                        <br />
-                        <span class="counter-name"> Defense:</span>
-                        <input type="number" class="counter text-input" value="1">
+                        <input type="number" class="counter" value="3">-->
+
                     </form>
                 </div>
             </div>
-            <!--notes-->
-            <div id="notes-section" draggable="true" class="drag section play" data-ng-controller="Notes">
+
+            <!--combat-->
+            <div id="combat-section" draggable="true" class="drag section play">
                 <div class="section-header">
                     <button class="hide-button" type="button">-</button>
                     <!--<button class="edit-button" type="button">edit</button>-->
-                    <h2 class="section-title">Notes</h2>
+                    <h2 class="section-title">Combat</h2>
                 </div>
                 <div class="section-body fixed-content pad-me">
                     <p class="play tip">Skills are ... TODO link to rules</p>
                     <form>
-                        <textarea id="notes" class="char-text" data-ng-model="notes"></textarea>
+                        <span class="counter-name">Speed:</span>
+                        <input type="number" class="counter" value="1">
+                        <br />
+                        <span class="counter-name">Offense:</span>
+                        <input type="number" class="counter" value="1">
+                        <br />
+                        <span class="counter-name"> Defense:</span>
+                        <input type="number" class="counter" value="1">
                     </form>
                 </div>
             </div>
+
+
+
 
             <!--NPCs-->
             <!--<div id="npcs-section" draggable="true" class="drag section" data-ng-controller="NPC">
@@ -392,7 +447,11 @@
                 <!--<h1>Misc</h1>-->
             </div>
 
+            
+
         </div>
     </div>
+
+    <span class="test">Wanderer</span>
 </body>
 </html>

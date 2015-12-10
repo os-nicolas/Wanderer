@@ -95,15 +95,17 @@ body {
 }
 
 .section-header, .divider {
+    -webkit-transition: all 0.3s ease;
     padding: 8px;
     background-color: #333;
     border-radius: 3px 3px 0px 0px;
 }
 
 .section.hidden .section-header {
-    
     border-radius: 3px 3px 3px 3px;
 }
+
+
 
 .hide-button, .edit-button {
     float: right;
