@@ -65,12 +65,12 @@ StandardBonuses.addBonus = function (addible) {
 }
 
 StandardBonuses.toJSON = function (out) {
-    out[Miscs.StandardBonuses] = StandardBonuses.model.bonuses;
+    out[StandardBonuses.JSONname] = StandardBonuses.model.bonuses;
 }
 
 StandardBonuses.fromJSON = function (input) {
     StandardBonuses.model.bonuses = input[StandardBonuses.JSONname];
-    Miscs.model.$apply();
+    StandardBonuses.model.$apply();
 }
 
 StandardBonuses.clear = function () {

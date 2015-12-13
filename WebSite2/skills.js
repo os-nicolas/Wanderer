@@ -155,7 +155,11 @@ Skills.updateValues = function() {
 Skills.init = function () {
 	//$("#add-skill").click(function () {
 	//	addElement("skill");
-	//})
+    //})
+
+    $("#debug").click(function () {
+        console.log(Skills.model.skills);
+    })
 }
 
 Skills.getBonus = function () {
